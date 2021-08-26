@@ -1,0 +1,42 @@
+
+:host{
+  box-sizing: border-box;
+  font-family: 'Tajawal', sans-serif;
+
+  // padding: 130px;
+}
+.section-worker{
+  padding: 100px 50px;
+  line-height: 3;
+  color: #fff;
+}
+.user-section{
+  padding: 100px 50px;
+  line-height: 3;
+  color: #fff;
+}
+
+
+.btn-worker-register{
+  z-index: 999999;
+}
+
+.serves-us-home-card{
+  width: 100%;
+  height: 230px;
+  background: url('/../../assets/images/wave-blue.svg') no-repeat center;
+  background-size: cover;
+  font-family: 'Tajawal', sans-serif;
+}
+
+.serves-us-home-card .heading{
+  // margin-top: 50px;
+  padding-top: 50px;
+  margin-bottom: 0px;
+  color:#fff
+
+}
+
+.font-Tajawal{
+  font-family: 'Tajawal', sans-serif;
+}

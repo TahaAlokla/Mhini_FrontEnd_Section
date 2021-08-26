@@ -1,0 +1,27 @@
+
+:host{
+  font-family: 'Tajawal', sans-serif;
+
+}
+a{
+  text-decoration: none;
+}
+input{
+  outline: none;
+}
+input:focus {
+  outline: none !important;
+  border-color: transparent;
+  
+}
+.style-select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 22px;
+  text-align: center;
+  align-items: center;
+  padding:-10px !important;
+ background:transparent !important;
+
+}

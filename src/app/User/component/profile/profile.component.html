@@ -1,0 +1,47 @@
+<div class="uk-container uk-margin-large-top uk-margin-large-buttom" *ngIf="currentUser; else loggedOut">
+  <div class="uk-card-body uk-margin uk-padding-small">
+    <p class="uk-text-center uk-text-success uk-text-large uk-text-bolder ">معلومات الحساب</p>
+  <hr class="uk-divider-icon">
+  <p class="lead ">اسم المستخدم : {{  currentUser.userData.username }}</p>
+  <hr class="uk-divider-icon">
+  <p class="lead "> رقم الهاتف  : {{  currentUser.userData.phoneNumber}}</p>
+  <hr class="uk-divider-icon">
+  <p class="lead  "> المدينة  : {{  currentUser.userData.city }}</p>
+  <hr class="uk-divider-icon">
+  <p class="lead "> تاريخ انشاء الحساب : {{  currentUser.userData.createdAt | date :'short'}}</p>
+
+  </div>
+  <div class="uk-margin uk-text-lead uk-padding-large">
+    <button class="uk-button-danger uk-button uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-medium"
+    (click)="deleteUserAccount(currentUser.userData._id)">حذف الحساب</button>
+    <button class="uk-button-primary uk-button uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-small">تحديث المعلومات</button>
+
+  </div>
+<!--!  if show error when delete user -->
+  <div class="uk-margin-medium-top">
+    <div class="uk-alert-danger" uk-alert *ngIf="errorMessageDelete">
+      <p class="lead">
+        هناك مشكلة في عملية الحذف
+      </p>
+      <p class="lead">
+        {{ errorMessageDelete }}
+      </p>
+    </div>
+  </div>
+
+  <!--! if success delete user -->
+  <div class="uk-margin-medium-top">
+    <div class="uk-alert-success" uk-alert *ngIf="isSuccessfulDeleteMassage">
+      <p class="lead uk-text-center">
+        تم حذف الحساب بنجاح
+      </p>
+    </div>
+  </div>
+
+</div>
+
+
+
+<ng-template #loggedOut>
+  Please login.
+</ng-template>

@@ -1,0 +1,155 @@
+<nav class="navbar navbar-dark " style="background-color: #ffffff;">
+  <div class="container">
+    <div class="">
+      <form class="" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+
+
+        <div class="mt-4 row  justify-content-start">
+
+          <div class="col-4 mx-4">
+            <mat-form-field>
+              <mat-label class="mat-title" color="accent">أختر مدينتك</mat-label>
+              <mat-select class="mat-title " color="accent" name="city" [(ngModel)]="form.city" #city="ngModel"
+                required>
+                <mat-option *ngFor="let city of  citesWorker" [value]="city?.cityName">
+                  {{city?.cityName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="uk-alert-danger" uk-alert *ngIf="city.errors && f.submitted">
+              <p class="lead">اختيار المدينة مطلوب </p>
+            </div>
+          </div>
+
+          <div class="col-4 mx-4">
+            <mat-form-field>
+              <mat-label class="mat-title" color="accent">أختر الخدمة التي تبحث عنها</mat-label>
+              <mat-select class="mat-title " color="accent" name="JobWorker" [(ngModel)]="form.JobWorker"
+                #JobWorker="ngModel" required>
+                <mat-option *ngFor="let JobWorker of  result" [value]="JobWorker?.serviceName">
+                  {{JobWorker?.serviceName}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div class="uk-alert-danger" uk-alert *ngIf="JobWorker.errors && f.submitted">
+              <p class="lead">اختيار الخدمة مطلوب </p>
+            </div>
+          </div>
+          <div class="col-2 mt-3">
+            <button mat-raised-button color="accent" class="px-5 py-2 lead text-center "> البحث </button>
+          </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+</nav>
+<div class="body-section-result mt-3">
+  <div class="container">
+
+    <div class="row">
+      <div class="" *ngIf="isSuccessSearch&&lengthResult>0"
+        uk-scrollspy="cls: uk-animation-slide-bottom; target: .uk-card; delay: 300; repeat: true">
+        <div class="alert alert-info mx-0" role="alert">
+          <p class="lead ">{{MassageResult}}</p>
+        </div>
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="MassageError">
+        <p>{{MassageError}}</p>
+      </div>
+      <div class="alert alert-warning" role="alert" *ngIf="isSuccessSearch&&lengthResult<1">
+        <p class="lead ">{{MassageResult}}</p>
+      </div>
+    </div>
+
+    <div class="row mb-4">
+      <div class="col-4 col-sm-12 col-md-6 col-xl-4 ">
+        <div class="uk-child-width-1-1@m " uk-grid>
+          <div *ngFor="let item of workersResult">
+            <div class="">
+              <div class="uk-card  uk-preserve-width uk-card-body uk-card-hover  uk-box-shadow-medium  "
+                uk-scrollspy="cls: uk-animation-slide-top; repeat: false">
+                <div class="row">
+                  <div class="col-4">
+                    <img *ngIf="item.workerImage" src="http://localhost:3000/images/{{item.workerImage}}" width="100%"
+                      height="100%" class="uk-border-rounded img-worker" alt="worker-image" uk-img>
+                  </div>
+                  <div class="col-8">
+                    <p class=" uk-text-bold">
+                      اسم المهني: {{item.username}}
+                    </p>
+
+                    <p class="uk-text-default">
+                      الجنس : {{item.workerGender}}
+                    </p>
+                    <p class="uk-text-default">
+                      العمر : {{item.workerAge|brithdayToAge}}
+                    </p>
+                  </div>
+                </div>
+                <div class="row mt-2">
+                  <div class="col-12">
+                    <p class="uk-text-default">
+                      وصف الخدمة : {{item.descriptionService}}
+                    </p>
+                    <p class="uk-text-default ">
+                      العنوان : {{item.workerAddress}}
+                    </p>
+
+
+                    <!-- phoneNumber , workerImage , _id -->
+                  </div>
+
+
+                </div>
+                <div class="row mt-3">
+                  <div class="col-6 col-sm-12 col-md-12 col-lg-6">
+                    <button class="btn  btn-lg w-100 my-2"
+                    ngClass="{{getStatus(item._id)?'btn-danger':'btn-success'}}"
+                    [disabled]="getStatus(item._id)"
+
+                      (click)="addWorkerServiceToOrder(item._id)">
+                      <span *ngIf="!getStatus(item._id)">طلب الخدمة</span>
+                      <span *ngIf="getStatus(item._id)">الطلب معلق</span>
+                    </button>
+                  </div>
+                  <div class="col-6 col-sm-12 col-md-12 col-lg-6 my-2">
+                    <button class="btn btn-info btn-lg w-100" (click)="Clicked.click()">
+                      اتصال</button>
+                    <!-- {{item.phoneNumber}} -->
+                    <a href="tel:{{item.phoneNumber}}" class="d-none" #Clicked>
+                    </a>
+                  </div>
+
+                </div>
+
+
+
+
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </div>
+
+    <!-- * cared worker  -->
+    <!-- class="uk-column-1-2@s uk-column-1-3@m uk-column-1-4@l" -->
+    <!-- class="uk-child-width-1-3@m " -->
+
+
+
+  </div>
+</div>

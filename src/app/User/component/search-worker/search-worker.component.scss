@@ -1,0 +1,40 @@
+:host{
+  font-family: 'Tajawal', sans-serif;
+}
+.style-select {
+  // -webkit-appearance: none;
+  // -moz-appearance: none;
+  // appearance: none;
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+  padding:-10px !important;
+ background:#FFF !important;
+
+}
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+  background-color: #FFF !important;
+  // color: rgb(35, 46, 35);
+}
+.mat-select-panel {
+  background: red;
+
+}
+.example-full-width {
+  width: 100%;
+}
+
+.body-section-result{
+  margin-top: 50px !important;
+}
+.uk-card{
+  max-width: 100% !important;
+}
+
+.img-worker{
+  background-size: cover;
+}

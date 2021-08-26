@@ -1,0 +1,26 @@
+
+<main class="uk-container uk-margin-large-bottom">
+
+  <p class="uk-h2 uk-text-center uk-text-large uk-text-bolder uk-height-small uk-padding  uk-text-primary">{{QuestionsData.massage}}</p>
+
+  <!-- ACCORDION -->
+  <mat-accordion >
+    <ng-container *ngFor="let item of  QuestionsData.questionsArray">
+      <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false" class="m-3 uk-box-shadow-large ">
+        <mat-expansion-panel-header class="m-3">
+          <mat-panel-title class="mat-headline pt-5 pb-5">
+            {{item.Question}}
+          </mat-panel-title>
+          <!-- <mat-panel-description>
+            Currently I am {{panelOpenState ? 'open' : 'closed'}}
+          </mat-panel-description> -->
+        </mat-expansion-panel-header >
+        <p class="mat-title lead">{{item.Answer}}</p>
+      </mat-expansion-panel>
+    </ng-container>
+
+
+  </mat-accordion>
+
+
+</main>

@@ -1,0 +1,102 @@
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport uk-animation-fade>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div
+            class="uk-margin uk-child-width-expand uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large uk-width-1-2@m">
+            <p class="uk-card-title uk-text-center uk-text-success uk-text-bolder uk-text-large uk-margin-small-bottom">
+              معلومات الحساب العامل المهني</p>
+
+
+            <div class="" *ngIf="currentUser; else loggedOut">
+              <div class="">
+                <!-- workerImage -->
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">الصورة الشخصية
+                </p>
+                <img *ngIf="currentUser.workerProfile.workerImage"
+                  src="http://localhost:3000/images/{{currentUser.workerProfile.workerImage}}" width="30%" height="30%"
+                  alt="" uk-img class="avatar m-2">
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">اسم المستخدم : {{
+                  currentUser.userData.username }}</p>
+
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary"> رقم الهاتف : {{
+                  currentUser.userData.phoneNumber}}</p>
+
+                <p class="lead  uk-margin-small-bottom  uk-text-lead  uk-text-secondary"> المدينة : {{
+                  currentUser.userData.city }}</p>
+
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary"> تاريخ انشاء الحساب : {{
+                  currentUser.userData.createdAt | date :'short'}}
+                </p>
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary"> تاريخ الولادة : {{
+                  currentUser.userData.createdAt | date :'short'}}
+                </p>
+                <!-- * worker profile data  -->
+                <h3>تفاصيل الخدمات المقدمة </h3>
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">الخدمة المقدمة : {{
+                  currentUser.workerProfile.service }}
+                </p>
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">الوصف الخاص بالخدمة المقدمة : {{
+                  currentUser.workerProfile.descriptionService }}
+                </p>
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">النوع الأجتماعي : {{
+                  currentUser.workerProfile.workerGender }}
+                </p>
+                <!-- workerAddress -->
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">العنوان التفصيلي : {{
+                  currentUser.workerProfile.workerAddress }}
+                </p>
+                <!-- workerAge -->
+                <p class="lead uk-margin-small-bottom  uk-text-lead  uk-text-secondary">العمر : {{
+                  currentUser.workerProfile.workerAge | brithdayToAge }}
+                </p>
+
+
+
+              </div>
+              <div class="lead">
+                <button
+                  class="btn btn-danger uk-box-shadow-medium mx-2 p-sm-3"
+                  (click)="deleteUserAccount(currentUser.userData._id)">حذف الحساب</button>
+                <button
+                  class="btn btn-primary uk-box-shadow-medium mx-2 p-sm-3">تحديث
+                  المعلومات</button>
+
+              </div>
+              <!--!  if show error when delete user -->
+              <div class="uk-margin-medium-top">
+                <div class="uk-alert-danger" uk-alert *ngIf="errorMessageDelete">
+                  <p class="lead">
+                    هناك مشكلة في عملية الحذف
+                  </p>
+                  <p class="lead">
+                    {{ errorMessageDelete }}
+                  </p>
+                </div>
+              </div>
+
+              <!--! if success delete user -->
+              <div class="uk-margin-medium-top">
+                <div class="uk-alert-success" uk-alert *ngIf="isSuccessfulDeleteMassage">
+                  <p class="lead uk-text-center">
+                    تم حذف الحساب بنجاح
+                  </p>
+                </div>
+              </div>
+
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <ng-template #loggedOut>
+        Please login.
+      </ng-template>

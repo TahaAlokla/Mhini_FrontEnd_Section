@@ -1,0 +1,20 @@
+<form>
+
+  <!-- name -->
+  <div class="field">
+    <input type="text" name="name" class="input" placeholder="Your Name" [(ngModel)]="name1">
+  </div>
+
+  <!-- email -->
+  <div class="field">
+    <input type="email" name="email" class="input" placeholder="Your Email" [(ngModel)]="email1">
+  </div>
+
+  <!-- message -->
+  <div class="field">
+    <textarea class="textarea" name="message" placeholder="What's on your mind?" [(ngModel)]="message1"></textarea>
+  </div>
+
+  <button type="submit" class="button is-danger is-large">Submit</button>
+
+</form>

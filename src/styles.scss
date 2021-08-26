@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+/* Custom SCSS/SASS Files */
+@import 'variables';
+@import 'mixins';
+
+/* UIKit */
+@import "variables-theme.scss";
+@import "mixins-theme.scss";
+@import "uikit-theme.scss";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+html, body { height: 100%; }
+@import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
+@import '~@fortawesome/fontawesome-free/scss/solid.scss';
+@import '~@fortawesome/fontawesome-free/scss/regular.scss';
+@import '~@fortawesome/fontawesome-free/scss/brands.scss';
+
+@import '~mdb-angular-ui-kit/assets/scss/mdb.scss';

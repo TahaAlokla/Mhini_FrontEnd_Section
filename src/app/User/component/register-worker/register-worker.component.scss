@@ -1,0 +1,104 @@
+
+:host{
+  font-family: 'Tajawal', sans-serif;
+
+}
+a{
+  text-decoration: none;
+}
+input{
+  outline: transparent;
+}
+input:focus{
+  outline: transparent !important;
+  border-color:  transparent !important;
+}
+ textarea{
+  outline: transparent !important;
+  border-color: #2c3e50!important;
+  border-width: 2px;
+
+}
+
+
+.style-select, textarea{
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  font-size: 18px;
+  text-align: center;
+  align-items: center;
+  // padding:-10px !important;
+ background:transparent !important;
+
+
+
+}
+
+
+/* Removes the clear button from date inputs */
+input[type="date"]::-webkit-clear-button {
+  display: none;
+}
+
+/* Removes the spin button */
+input[type="date"]::-webkit-inner-spin-button {
+  display: none;
+}
+
+/* Always display the drop down caret */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  color: #2c3e50;
+}
+
+/* A few custom styles for date inputs */
+input[type="date"] {
+  appearance: none;
+  -webkit-appearance: none;
+  color: #95a5a6;
+  font-family: "Helvetica", arial, sans-serif;
+  font-size: 18px;
+  border:1px solid #ecf0f1;
+  background:#ecf0f1;
+  padding:5px;
+  display: inline-block !important;
+  visibility: visible !important;
+}
+
+input[type="date"], focus {
+  color: #00a645;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+}
+
+
+
+.mat-form-field {
+  margin: 40px 0;
+  width: 500px !important;
+}
+
+.mat-toolbar-single-row {
+  height: auto !important;
+  background: transparent;
+}
+
+.mat-toolbar-single-row button {
+  width: 200px;
+}
+
+.mat-form-field {
+  width: 100%;
+}
+
+#uploadFile {
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  z-index: 9;
+  opacity: 0;
+  height: 100%;
+  cursor: pointer;
+  position: absolute;
+}

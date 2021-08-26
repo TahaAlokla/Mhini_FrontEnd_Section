@@ -1,0 +1,390 @@
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport uk-animation-fade>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate enctype="multipart/form-data">
+        <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+          <div class="uk-width-5-6 uk-margin-auto">
+            <div
+              class="uk-card uk-card-default uk-card-large uk-grid-collapse uk-child-width-1-2@s uk-margin uk-border-rounded uk-position-relative uk-overflow-hidden uk-box-shadow-large "
+              uk-grid>
+              <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
+                <div class="uk-card-body uk-padding-small">
+                  <div class="uk-child-width-expand@s uk-margin" uk-grid>
+
+                      <div class="uk-inline  ">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">المدينة</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                          أختر المدينة التي تعيش بها
+                        </label>
+                        <select class="uk-box-shadow-medium"
+                        name="city" [(ngModel)]="form.city" #city="ngModel" required
+                          class="uk-select uk-text-center style-select">
+                          <option *ngFor="let city of  citesWorker"
+                          [value]="city?.cityName">
+                            {{city?.cityName}}
+                          </option>
+                        </select>
+                        <div class="uk-alert-danger" uk-alert *ngIf="city.errors && f.submitted">
+                          <p class="lead">اختيار المدينة مطلوب </p>
+                        </div>
+
+                      </div>
+                      <!-- * Gender -->
+                      <div class="uk-inline  ">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">الجنس</p>
+                        <label class="uk-form-label uk-margin-small uk-text-default" for="form-stacked-text ">
+                          هل أنت ذكر / أنثى ؟
+                        </label>
+                        <select name="gander" [(ngModel)]="form.gander" #gander="ngModel" required
+                          class="uk-select uk-text-center style-select">
+                          <option *ngFor="let gander of  ganderWorker"
+                          [value]="gander">
+                            {{gander}}
+                          </option>
+                        </select>
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="gander.errors && f.submitted">
+                          <p class="lead">أختيار جنس العامل ذكر / أنثى مطلوب </p>
+                        </div>
+
+                      </div>
+                    <!-- </div> -->
+                  </div>
+
+                  <!--* Choose birthday Worker -->
+                  <div class="uk-margin-small">
+
+                    <div class="uk-margin-small-bottom">
+
+                      <div class="uk-inline uk-width-1-1">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">تاريخ الميلاد</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                        حدد تاريخ ميلادك بالسنة الميلادية
+                        </label>
+
+                        <input class="uk-input uk-form-large    uk-text-center"
+                        type="date" required
+                        name="birthdayWorker"
+                        #birthdayWorker="ngModel"
+                        [(ngModel)]="form.birthdayWorker" required>
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="birthdayWorker.errors && f.submitted">
+                          <p class="lead">أختيار تاريخ الميلاد مطلوب</p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- * Choose Worker Job -->
+                  <div class="uk-margin">
+
+                    <div class="uk-margin-small-bottom">
+
+                      <div class="uk-inline uk-width-1-1">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">المهنة</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                        اختر مهنتك التي تقدمها من قائمة الخدمات التي هنا
+                        </label>
+                        <select name="JobWorker" [(ngModel)]="form.JobWorker" #JobWorker="ngModel" required
+                        class="uk-select uk-text-center style-select">
+                        <option
+                        *ngFor="let JobWorker of  result"
+                        [value]="JobWorker?.serviceName">
+                          {{JobWorker?.serviceName}}
+                        </option>
+                      </select>
+
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="JobWorker.errors && f.submitted">
+                          <p class="lead">أختيار المهنة مطلوب</p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Description worker Job  -->
+                  <div class="uk-margin">
+
+                    <div class="uk-margin-small-bottom">
+
+                      <div class="uk-inline uk-width-1-1">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">وصف خدماتك</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                        قدم نعريفاً عن نفسك وماهي الخدمات التي تقدمها بشكل مفصل
+                        </label>
+                        <textarea class="uk-textarea  uk-padding-small"
+                        rows="5"
+                        name="JobDescriptionWorker" [(ngModel)]="form.JobDescriptionWorker" #JobDescriptionWorker="ngModel" required
+                        minlength="10"
+
+                        placeholder="هذا مثال عن وصفك لمهنك التي تقدمها : نقوم مثلاً بصيانة أبواب الخشب وبخ الموبيليا وتفصيل الاثاث المنزلي ....."></textarea>
+
+
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="JobDescriptionWorker.errors && f.submitted">
+                          <p class="lead " *ngIf="JobDescriptionWorker.errors.required">
+                            وصف المهنة ألزامي
+                          </p>
+                          <p class="lead " *ngIf="JobDescriptionWorker.errors. minlength">
+                            يجب أن تحقق عدد كلمات كافية لوصف الخدمات التي تقدمها
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- * العنوان التفصيلي للمهني  -->
+                  <div class="uk-margin">
+
+                    <div class="uk-margin-small-bottom">
+
+                      <div class="uk-inline uk-width-1-1">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">عنوانك التفصيلي</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                       عنوانك التفصيلي يساعد العملاء القريبون في العثور عليك
+                        </label>
+                        <textarea class="uk-textarea  uk-padding-small textarea-address"
+                        rows="4"
+                        name="AddressWorker" [(ngModel)]="form.AddressWorker" #AddressWorker="ngModel" required
+                        minlength="15"
+
+                        placeholder="هذا مثالاً : دمشق - القدم سكة القطار "></textarea>
+
+
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="AddressWorker.errors && f.submitted">
+                          <p class="lead " *ngIf="AddressWorker.errors.required">
+                          عنوانك ألزامي
+                          </p>
+                          <p class="lead "
+                          *ngIf="AddressWorker.errors.minlength">
+                            قدم وصفاً جيداً لعنوانك
+                          </p>
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+                  <!-- * صورة شخصية للمهني -->
+                  <div class="uk-margin">
+
+                    <div class="uk-margin-small-bottom">
+
+                      <div class="uk-inline uk-width-1-1">
+                        <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">صورتك الشخصية</p>
+                        <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                       الصورة الشخصية تعطي انطباعاً بأنك جاد في العمل مما يكسبك ثقة أكبر لدى عملائك
+                        </label>
+                        <div>
+                          <input type="file"
+                          style="display:none;"
+                          #ImageWorker="ngModel"
+                          #Clicked
+                          required
+                          name="ImageWorker"
+                          [(ngModel)]="form.ImageWorker"
+                          (change)="fileSelecte($event)" >
+                          <button type="button"
+                          class="uk-button uk-button-default"
+                          (click)="Clicked.click()">أرفع صورتك</button>
+                        </div>
+
+
+                        <div class="uk-alert-danger" uk-alert
+                        *ngIf="ImageWorker.errors && f.submitted">
+                          <p class="lead " *ngIf="ImageWorker.errors.required">
+                        الصورة ألزامية
+                          </p>
+
+                        </div>
+
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+
+
+              </div>
+              <div>
+                <!-- * section 1 for form register  -->
+                <div class="uk-card-body">
+                  <p
+                    class="uk-card-title uk-text-center uk-text-primary uk-text-bolder uk-text-large uk-margin- large-bottom">
+                    إنشاء حساب مهني </p>
+
+                  <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">
+                      الأسم الكامل باللغة العربية
+                    </label>
+                    <!-- username input  -->
+                    <div class="">
+                      <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-position-small uk-position-top-left" uk-icon="icon: user"></span>
+                        <!-- input file username  -->
+                        <input class="uk-input uk-form-large uk-placeholder   uk-text-center" type="text"
+                          placeholder="اسم المستخدم " name="username" [(ngModel)]="form.username" required minlength="2"
+                          #username="ngModel">
+                      </div>
+                      <!--* check required username  -->
+                      <div class="uk-alert-danger" uk-alert *ngIf="username.errors && f.submitted">
+                        <div class="" *ngIf="username.errors.required">
+                          <p class="lead">{{userNameRequiredMassage}}</p>
+                        </div>
+                        <div class="" *ngIf="username.errors.minlength">
+                          <p class="lead">{{userNameMinLength}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ! Password Section -->
+                  <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">
+                      كلمة المرور تتألف على الأقل من 6 حروف
+                    </label>
+                    <!-- password input minimum 6 char  -->
+                    <div class="">
+                      <div class="uk-inline uk-width-1-1">
+                        <a class="uk-form-icon uk-position-small uk-position-top-left">
+                          <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}
+                          </mat-icon>
+                        </a>
+                        <!-- input password filed -->
+                        <input class="uk-input uk-form-large uk-placeholder uk-text-center"
+                          [type]="hide1 ? 'password' : 'text'" placeholder="كلمة المرور " name="password"
+                          [(ngModel)]="form.password" required minlength="6" #password="ngModel">
+                      </div>
+                      <!--*  check password required and minimum 6 char -->
+                      <div class="uk-alert-danger" uk-alert *ngIf="password.errors && f.submitted">
+                        <div class="" *ngIf="password.errors.required">
+                          <p class="lead">
+                            {{passwordRequiredMassage}}
+                          </p>
+                        </div>
+                        <div class="" *ngIf="password.errors.minlength">
+                          <p class="lead">
+                            {{passwordMinLength}}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- ! تأكيد كلمة المرور  -->
+                  <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">
+                      تأكيد كلمة المرور
+                    </label>
+                    <div class="">
+                      <div class="uk-inline uk-width-1-1">
+                        <a class="uk-form-icon uk-position-small uk-position-top-left">
+                          <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}
+                          </mat-icon>
+                        </a>
+                        <!-- input password copy filed -->
+                        <input class="uk-input uk-form-large uk-placeholder uk-text-center"
+                          [type]="hide ? 'password' : 'text'" placeholder="اعادة كلمة المرور " name="passwordCopy"
+                          [(ngModel)]="form.passwordCopy" required validateEqual="password" [equal]="password.value"
+                          minlength="6" #passwordCopy="ngModel">
+                      </div>
+                      <!--* check password copy is required and equal password original -->
+                      <div class="uk-alert-danger" uk-alert *ngIf="passwordCopy.errors && f.submitted">
+                        <div class="" *ngIf="passwordCopy.errors.required">
+                          <p class="lead">
+                            {{passwordRequiredMassage}}
+                          </p>
+                        </div>
+                        <div class="" *ngIf="passwordCopy.errors.equal">
+                          <p class="lead">
+                            يجب ان تتطابق كلمة المرور مع كلمة المرور التي كتبتها في الاعلى
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="uk-margin">
+                    <label class="uk-form-label" for="form-stacked-text">
+                      رقم الهاتف رقم سوري بدون رمز دولي
+                    </label>
+                    <div class="">
+                      <div class="uk-inline uk-width-1-1">
+                        <span class="uk-form-icon uk-position-small uk-position-top-left" uk-icon="icon: phone"></span>
+                        <!-- phone number file is required and minimum length 10 char  -->
+                        <input class="uk-input uk-form-large uk-placeholder uk-text-center" type="text"
+                          placeholder="رقم الهاتف" name="phoneNumber" [(ngModel)]="form.phoneNumber" required
+                          minlength="10" #phoneNumber="ngModel">
+                      </div>
+                      <!--* check phone number filed  -->
+                      <div class="uk-alert-danger" uk-alert *ngIf="phoneNumber.errors && f.submitted">
+                        <div *ngIf="phoneNumber.errors.required">
+                          <p class="lead">
+                            رقم الهاتف مطلوب
+                          </p>
+                        </div>
+                        <div *ngIf="phoneNumber.errors.minlength">
+                          <p class="lead">
+                            رقم الهاتف 10 ارقام بدون رمز دولي
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="uk-margin">
+                    <div class="uk-form-controls">
+                      <mat-checkbox required (change)="onChange($event)"
+                        class="uk-text-success uk-text-default uk-margin-small-right">الموافقة على شروط التسجيل
+                      </mat-checkbox>
+                      <label class="uk-margin-small-right">
+                        <small> <a routerLink="/registration-terms">قراءة الشروط</a> </small>
+                      </label>
+
+                    </div>
+                  </div>
+                  <div class="uk-margin-auto uk-margin-large-top">
+                    <div class="uk-form-controls">
+                      <button class="uk-button uk-button-primary uk-text-bolder uk-border-rounded px-5 py-2"
+                        [disabled]="!isCheckedRequired">أنشاء الحساب</button>
+                    </div>
+                  </div>
+                  <!-- check if error register  -->
+                  <div class="uk-margin-medium-top">
+                    <div class="uk-alert-danger" uk-alert *ngIf="f.submitted && isSignUpFailed">
+                      <p class="lead">
+                        هناك مشكلة في عملية إنشاء الحساب
+                      </p>
+                      <p class="lead">
+                        {{ errorMessage }}
+                      </p>
+                    </div>
+                  </div>
+                  <!-- if have account ready -->
+                  <div class="uk-text-default uk-text-center uk-margin-medium-top">
+                    أمتلك حساباً <a routerLink="../../user/loginUser">تسجيل الدخول</a>
+                  </div>
+
+                  <!-- * if success register account  -->
+                  <div class="alert alert-success" *ngIf="isSuccessful">
+                    <p class="lead">
+                      تم إنشاء الحساب بنجاح
+                    </p>
+                    <button class="uk-button uk-button-primary uk-button-large  uk-text-bolder uk-text-center"
+                      (click)="redirectLoginUser()">تسجيل الدخول</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+      <!-- *End Form  -->
+       <!-- * if success register account  -->
+       <div class="alert alert-success" *ngIf="isSuccessful">
+        <p class="lead">
+          تم إنشاء الحساب بنجاح
+        </p>
+        <button class="uk-button uk-button-primary uk-button-large  uk-text-bolder uk-text-center" (click)="redirectLoginUser()">تسجيل الدخول</button>
+      </div>
+    </div>
+  </div>
+</div>

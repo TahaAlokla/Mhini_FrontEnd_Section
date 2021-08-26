@@ -1,0 +1,221 @@
+<!-- ! Register page User -->
+
+<div class="uk-section uk-section-muted uk-flex uk-flex-middle uk-animation-fade" uk-height-viewport>
+  <div class="uk-width-1-1">
+    <div class="uk-container">
+      <div class="uk-grid-margin uk-grid uk-grid-stack" uk-grid>
+        <div class="uk-width-1-1@m">
+          <div class="uk-margin uk-width-large uk-margin-auto uk-card uk-card-default uk-card-body uk-box-shadow-large">
+            <p class="uk-card-title uk-text-center uk-text-success uk-text-bolder uk-text-large uk-margin-small-bottom">
+              إنشاء حساب مستخدم </p>
+
+            <!-- Syntax Angular Form here -->
+            <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+              <!-- username input  -->
+              <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <span class="uk-form-icon uk-position-small uk-position-top-left" uk-icon="icon: user"></span>
+                  <!-- input file username  -->
+                  <input class="uk-input uk-form-large uk-placeholder   uk-text-center" type="text"
+                    placeholder="اسم المستخدم " name="username" [(ngModel)]="form.username" required
+                    minlength="2"
+                    #username="ngModel">
+                </div>
+                 <!--* check required username  -->
+                <div class="uk-alert-danger" uk-alert *ngIf="username.errors && f.submitted">
+                  <div class="" *ngIf="username.errors.required">
+                    <p class="lead">{{userNameRequiredMassage}}</p>
+                  </div>
+                  <div class="" *ngIf="username.errors.minlength">
+                    <p class="lead">{{userNameMinLength}}</p>
+                  </div>
+                </div>
+              </div>
+              <!-- password input minimum 6 char  -->
+              <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <a class="uk-form-icon uk-position-small uk-position-top-left">
+                    <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </a>
+                  <!-- input password filed -->
+                  <input class="uk-input uk-form-large uk-placeholder uk-text-center"  [type]="hide1 ? 'password' : 'text'"
+                    placeholder="كلمة المرور " name="password" [(ngModel)]="form.password" required minlength="6"
+                    #password="ngModel">
+                </div>
+                 <!--*  check password required and minimum 6 char -->
+                <div class="uk-alert-danger" uk-alert *ngIf="password.errors && f.submitted">
+                  <div class="" *ngIf="password.errors.required">
+                    <p class="lead">
+                      {{passwordRequiredMassage}}
+                    </p>
+                  </div>
+                  <div class="" *ngIf="password.errors.minlength">
+                    <p class="lead">
+                      {{passwordMinLength}}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- اعادة كتابة كلمة المرور  -->
+              <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <a class="uk-form-icon uk-position-small uk-position-top-left">
+                    <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </a>
+                  <!-- input password copy filed -->
+                  <input
+                   class="uk-input uk-form-large uk-placeholder uk-text-center"  [type]="hide ? 'password' : 'text'"
+                   placeholder="اعادة كلمة المرور " name="passwordCopy"
+                   [(ngModel)]="form.passwordCopy" required validateEqual="password"
+                   [equal]="password.value"
+                   minlength="6" #passwordCopy="ngModel" >
+                </div>
+                 <!--* check password copy is required and equal password original -->
+                <div class="uk-alert-danger" uk-alert *ngIf="passwordCopy.errors && f.submitted">
+                  <div class="" *ngIf="passwordCopy.errors.required">
+                    <p class="lead">
+                      {{passwordRequiredMassage}}
+                    </p>
+                  </div>
+                  <div class="" *ngIf="passwordCopy.errors.equal">
+                    <p class="lead">
+                        يجب ان تتطابق كلمة المرور مع كلمة المرور التي كتبتها في الاعلى
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- phone number input -->
+              <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <span class="uk-form-icon uk-position-small uk-position-top-left" uk-icon="icon: phone"></span>
+                  <!-- phone number file is required and minimum length 10 char  -->
+                  <input class="uk-input uk-form-large uk-placeholder uk-text-center" type="text"
+                    placeholder="رقم الهاتف" name="phoneNumber" [(ngModel)]="form.phoneNumber" required minlength="10"
+                    #phoneNumber="ngModel"
+                    >
+                </div>
+                 <!--* check phone number filed  -->
+                <div class="uk-alert-danger" uk-alert *ngIf="phoneNumber.errors && f.submitted">
+                  <div *ngIf="phoneNumber.errors.required">
+                    <p class="lead">
+                      رقم الهاتف مطلوب
+                    </p>
+                   </div>
+                  <div *ngIf="phoneNumber.errors.minlength">
+                    <p class="lead">
+                      رقم الهاتف 10 ارقام بدون رمز دولي
+                    </p>
+                    </div>
+                </div>
+              </div>
+              <!-- city select box  -->
+              <div class="uk-margin-small-bottom">
+                <div class="uk-inline uk-width-1-1">
+                  <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-muted">المدينة</p>
+                  <select name="city" [(ngModel)]="form.city" #city="ngModel" required
+                    class="uk-select uk-text-center style-select">
+                    <option *ngFor="let city of  citesWorker"
+                    [value]="city?.cityName">
+                      {{city?.cityName}}
+                    </option>
+                  </select>
+                  <div class="uk-alert-danger" uk-alert *ngIf="city.errors && f.submitted">
+                    <p class="lead">اختيار المدينة مطلوب </p>
+                  </div>
+
+                </div>
+              </div>
+              <!-- submit input  -->
+              <div class="uk-margin-medium-top">
+                <button class="uk-button uk-button-primary uk-button-large  uk-text-bolder uk-width-1-1">إنشاء
+                  الحساب</button>
+              </div>
+              <!-- check if error register  -->
+              <div class="uk-margin-medium-top">
+                <div class="uk-alert-danger" uk-alert *ngIf="f.submitted && isSignUpFailed">
+                  <p class="lead">
+                    هناك مشكلة في عملية إنشاء الحساب
+                  </p>
+                  <p class="lead">
+                    {{ errorMessage }}
+                  </p>
+                </div>
+              </div>
+              <!-- if have account ready -->
+              <div class="uk-text-default uk-text-center uk-margin-medium-top">
+                أمتلك حساباً <a routerLink="../../user/loginUser">تسجيل الدخول</a>
+              </div>
+            </form>
+            <!-- * if success register account  -->
+            <div class="alert alert-success" *ngIf="isSuccessful">
+              <p class="lead">
+                تم إنشاء الحساب بنجاح
+              </p>
+              <button class="uk-button uk-button-primary uk-button-large  uk-text-bolder uk-text-center" (click)="redirectLoginUser()">تسجيل الدخول</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+<!-- <div class="col-md-12">
+  <div class="card card-container">
+    <img id="profile-img" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" class="profile-img-card" />
+    <form *ngIf="!isSuccessful" name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate>
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" name="username" [(ngModel)]="form.username" required minlength="3"
+          maxlength="20" #username="ngModel" />
+        <div class="alert-danger" *ngIf="username.errors && f.submitted">
+          <div *ngIf="username.errors.required">Username is required</div>
+          <div *ngIf="username.errors.minlength">
+            Username must be at least 3 characters
+          </div>
+          <div *ngIf="username.errors.maxlength">
+            Username must be at most 20 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" [(ngModel)]="form.email" required email
+          #email="ngModel" />
+        <div class="alert-danger" *ngIf="email.errors && f.submitted">
+          <div *ngIf="email.errors.required">Email is required</div>
+          <div *ngIf="email.errors.email">
+            Email must be a valid email address
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" name="password" [(ngModel)]="form.password" required minlength="6"
+          #password="ngModel" />
+        <div class="alert-danger" *ngIf="password.errors && f.submitted">
+          <div *ngIf="password.errors.required">Password is required</div>
+          <div *ngIf="password.errors.minlength">
+            Password must be at least 6 characters
+          </div>
+        </div>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-block">Sign Up</button>
+      </div>
+
+      <div class="alert alert-warning" *ngIf="f.submitted && isSignUpFailed">
+        Signup failed!<br />{{ errorMessage }}
+      </div>
+    </form>
+
+    <div class="alert alert-success" *ngIf="isSuccessful">
+      Your registration is successful!
+    </div>
+  </div>
+</div> -->
