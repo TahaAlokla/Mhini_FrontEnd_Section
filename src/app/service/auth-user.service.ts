@@ -22,6 +22,7 @@ export class AuthUserService {
   private searchWorkerUrl ="http://localhost:3000/api/user/searchWorker"
   private addOrderWorkerUrl ="http://localhost:3000/api/user/addOrder"
   private getOrderStatusPendingUrl= "http://localhost:3000/api/user/getOrderStatusPending"
+  private GetAllOrderStatusUrl= "http://localhost:3000/api/user/GetAllOrderStatus"
 
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }
@@ -66,6 +67,7 @@ export class AuthUserService {
   //  this.tokenStorge.getUser()
     // localStorage.getItem(TOKEN_KEY)
   }
+
   isLoggedInWorker(): boolean {
 
     // return !! this.tokenStorge.getToken()
@@ -83,6 +85,7 @@ export class AuthUserService {
    return this.http.delete<any>(this.deleteUserUrl+`${idUser}`)
 
   }
+
 
   deleteWorker(idUser:String): Observable<any>{
 
@@ -117,4 +120,8 @@ export class AuthUserService {
    getOrderStatusPending(IdClient:any):Observable<any>{
      return this.http.post<any>(this.getOrderStatusPendingUrl,{IdClient} , httpOptions )
    }
-}
+
+   getAllOrderStatus(IdForClient:any):Observable<any>{
+     return this.http.post(this.GetAllOrderStatusUrl,{IdForClient}, httpOptions)
+   }
+  }

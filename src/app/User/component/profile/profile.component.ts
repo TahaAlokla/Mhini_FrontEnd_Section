@@ -11,13 +11,40 @@ import { Component, OnInit } from '@angular/core';
 export class ProfileComponent implements OnInit {
   currentUser: any;
   errorMessageDelete = '';
+  idClient=''
   isSuccessfulDeleteMassage = false;
-
+  workersId=[]
+  acceptOrder=[]
+  rejectionOrder=[]
+  pendingOrder=[]
+  finishOrder=[]
+  CancellationOrder=[]
+  // arrayStatus for assigned one array of status arrases
+  arrayStatus:any=[]
   constructor(private token: TokenStorageService, private AuthUserService: AuthUserService, private router: Router) { }
 
   ngOnInit(): void {
     this.currentUser = this.token.getUser();
     console.log(this.currentUser);
+
+     // get workrsId for This Client Id For that Request order Status Pending
+     this.idClient= this.token.getUser().userData._id
+     this.AuthUserService.getAllOrderStatus(this.idClient).subscribe(result=>{
+       console.log(result);
+       
+       this.pendingOrder= result.pendingStatus
+       this.finishOrder= result.FinishStatus
+       this.CancellationOrder = result.CancellationStatus
+       this.rejectionOrder = result.RejectionStatus
+       this.acceptOrder = result.AcceptStatus
+
+      //  this.workersId= result.IdWorkers.map((item :any) =>item.IdWorker )
+      // console.log("workersId :" ,this.workersId);
+
+
+
+
+    })
 
   }
 
@@ -41,6 +68,29 @@ export class ProfileComponent implements OnInit {
 
     })
 
+
+  }
+
+  viewCancellationOrder(){
+    this.arrayStatus = this.CancellationOrder
+    console.log(this.arrayStatus);
+
+  }
+
+  viewfinishOrder(){
+    this.arrayStatus = this.finishOrder
+  }
+
+  viewAcceptOrder(){
+    this.arrayStatus = this.acceptOrder
+  }
+
+  viewRejectionOrder(){
+    this.arrayStatus = this.rejectionOrder
+  }
+  viewPendingOrder(){
+    this.arrayStatus = this.pendingOrder
+    console.log(this.arrayStatus);
 
   }
 

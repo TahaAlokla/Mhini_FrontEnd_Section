@@ -1,22 +1,115 @@
 <div class="uk-container uk-margin-large-top uk-margin-large-buttom" *ngIf="currentUser; else loggedOut">
-  <div class="uk-card-body uk-margin uk-padding-small">
+  <div class="card p-5 shadow-lg  m-5 bg-body rounded">
     <p class="uk-text-center uk-text-success uk-text-large uk-text-bolder ">معلومات الحساب</p>
-  <hr class="uk-divider-icon">
+
   <p class="lead ">اسم المستخدم : {{  currentUser.userData.username }}</p>
-  <hr class="uk-divider-icon">
+
   <p class="lead "> رقم الهاتف  : {{  currentUser.userData.phoneNumber}}</p>
-  <hr class="uk-divider-icon">
+
   <p class="lead  "> المدينة  : {{  currentUser.userData.city }}</p>
-  <hr class="uk-divider-icon">
+
   <p class="lead "> تاريخ انشاء الحساب : {{  currentUser.userData.createdAt | date :'short'}}</p>
+  <div class="card p-4 shadow-lg  m-5 bg-body rounded">
+    <p class="lead text-info text-center fw-bold">تفاصيل الطلبات </p>
+    <p class="lead ">   عدد الطلبات المعلقة : <span class="fw-bold text-info">{{pendingOrder.length }}</span>
+      <a (click)="viewPendingOrder() " data-bs-target="#exampleModal" data-bs-toggle="modal"> تفاصيل </a>
+
+    </p>
+
+
+     <p class="lead ">   عدد الطلبات  المرفوضة :  <span class="fw-bold text-info">{{rejectionOrder.length }}</span>
+      <a (click)="viewRejectionOrder() " data-bs-target="#exampleModal" data-bs-toggle="modal"> تفاصيل </a>
+
+    </p>
+
+
+     <p class="lead ">   عدد الطلبات  المقبولة : <span class="fw-bold text-info">{{acceptOrder.length }}</span>
+      <a (click)="viewAcceptOrder() " data-bs-target="#exampleModal" data-bs-toggle="modal"> تفاصيل </a>
+
+    </p>
+
+
+
+
+     <p class="lead "> عدد الطلبات  المنتهية  : <span class="fw-bold text-info">{{finishOrder.length }}</span>
+      <a (click)="viewfinishOrder() " data-bs-target="#exampleModal" data-bs-toggle="modal"> تفاصيل </a> </p>
+
+     <!-- CancellationOrder -->
+     <p class="lead " > عدد الطلبات  الملغية  : <span class="fw-bold text-info">{{CancellationOrder.length }}</span>
+      <a (click)="viewCancellationOrder() " data-bs-target="#exampleModal" data-bs-toggle="modal"> تفاصيل </a> </p>
 
   </div>
-  <div class="uk-margin uk-text-lead uk-padding-large">
-    <button class="uk-button-danger uk-button uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-medium"
-    (click)="deleteUserAccount(currentUser.userData._id)">حذف الحساب</button>
-    <button class="uk-button-primary uk-button uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-small">تحديث المعلومات</button>
+
+
+  <!--  ! Modal pope  -->
+  <!-- Button trigger modal -->
+<!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" >
+  Launch demo modal
+</button> -->
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content">
+      <div class="modal-header ">
+        <p class="modal-title lead fw-bold text-info center" id="exampleModalLabel">عرض التفاصيل</p>
+
+      </div>
+      <div class="modal-body">
+        <!-- table section  -->
+        <div class=" p-5 ">
+          <!-- <p class="lead fw-bold text-info center "> عرض المعلومات </p> -->
+          <div class="" *ngIf="arrayStatus.length === 0">
+            <div class="alert alert-danger" role="alert">
+              <p>لا توجد أي معلومات للعرض ! </p>
+
+            </div>
+          </div>
+          <div class="" *ngIf="arrayStatus.length!==0" >
+            <table class="table table-hover " >
+              <thead>
+                <tr>
+                  <th scope="col">رقم الطلب </th>
+                  <th scope="col">حالة الطلب </th>
+                  <th scope="col">الخدمة المطلوبة</th>
+                  <th scope="col">تاريخ الطلب </th>
+                  <th scope="col">المهني</th>
+                </tr>
+              </thead>
+              <tbody *ngFor="let item of arrayStatus; index as i">
+            <tr class="center">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item.OrderStatus}}</td>
+              <td>{{item.serviceName}}</td>
+              <!-- | date :'shortDate' -->
+              <td>{{item.timeOrder | date :'short'}}</td>
+              <!-- IdWorker -->
+              <td>{{item.IdWorker.username}}</td>
+            </tr>
+          </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger text-center " data-bs-dismiss="modal">أغلاق النافذة</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  update And delete user  -->
+<div class="uk-margin uk-text-lead uk-padding-large">
+  <button class="btn btn-danger text-center uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-medium"
+  (click)="deleteUserAccount(currentUser.userData._id)">حذف الحساب</button>
+  <button class="btn btn-info text-center uk-width-1-4 uk-padding-small uk-text-lead uk-margin-left uk-border-rounded uk-box-shadow-small">تحديث المعلومات</button>
+
+</div>
 
   </div>
+
 <!--!  if show error when delete user -->
   <div class="uk-margin-medium-top">
     <div class="uk-alert-danger" uk-alert *ngIf="errorMessageDelete">
