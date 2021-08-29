@@ -1,3 +1,4 @@
+import { NotfiactionService } from './service/notfiaction.service';
 import { TokenStorageService } from './service/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
@@ -19,11 +20,15 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private title: Title, private tokenStorageService: TokenStorageService) {
+  constructor(private title: Title, private tokenStorageService: TokenStorageService , private notificationService: NotfiactionService) {
     this.title.setTitle('مهني')
   }
 
   ngOnInit(): void {
+    this.notificationService.onNewNotification().subscribe(result=>{
+      console.log(result);
+
+    })
     this.isLoggedIn = !!(((this.tokenStorageService.getToken())&&(Object.keys(this.tokenStorageService.getUser()).length)));
     console.log(this.isLoggedIn, 'this.isLoggedIn');
     console.log(this.tokenStorageService.getUser());
