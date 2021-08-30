@@ -9,18 +9,22 @@ import { ManageUsersComponent } from '../../components/manage-users/manage-users
 import { AdminAuthGuard } from 'src/app/guards/admin-auth.guard';
 
 const routes: Routes = [
+  { path: 'loginAdmin', component: LoginAdminComponent },
   {
-    path: '', children: [
-      { path: 'loginAdmin', component: LoginAdminComponent },
-      { path: 'dashboard',
-      canActivate: [AdminAuthGuard],
-       component: DashboardComponent },
+    path: 'dashboard',
+    canActivate: [AdminAuthGuard],
+    component:DashboardComponent,
+
+    children: [
+
+
       { path: 'manage-service-us',
       canActivate: [AdminAuthGuard],
        component: ManageServicesComponent },
       { path: 'manage-user',
       canActivate: [AdminAuthGuard],
        component: ManageUsersComponent ,
+
 
     }
     ]

@@ -11,6 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class AdminService {
   private loginAdminUrl="http://localhost:3000/api/admin/login"
+  private getAllUserUrl ="http://localhost:3000/api/admin/getAllUser"
+  private blockedUserUrl ="http://localhost:3000/api/admin/blockedUserActivate"
+  private unBlockedUserUrl= "http://localhost:3000/api/admin/unBlockedUserActivate"
+  private getAllServicesUrl = "http://localhost:3000/api/service/viewservices"
 
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }
@@ -25,6 +29,14 @@ export class AdminService {
       phoneNumber,
       password
     });
+  }
+
+  getAllUser():Observable<any>{
+  return this.http.get(this.getAllUserUrl)
+  }
+
+  getAllServices():Observable<any>{
+    return this.http.get(this.getAllServicesUrl)
   }
 
 
@@ -42,4 +54,15 @@ export class AdminService {
    // this.tokenStorge.getUser()
    // localStorage.getItem(TOKEN_KEY)
  }
+
+ blockedUser(phoneNumber:any):Observable<any>{
+   return this.http.post(this.blockedUserUrl ,{phoneNumber})
+
+ }
+//  unBlokedUser
+unBlockedUser(phoneNumber:any):Observable<any>{
+  return this.http.post(this.unBlockedUserUrl ,{phoneNumber})
+}
+
+
 }

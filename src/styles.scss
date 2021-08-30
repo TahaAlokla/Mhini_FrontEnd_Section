@@ -8,10 +8,13 @@
 @import "mixins-theme.scss";
 @import "uikit-theme.scss";
 @import '~bootstrap/dist/css/bootstrap.min.css';
-html, body { height: 100%; }
+
 @import '~@fortawesome/fontawesome-free/scss/fontawesome.scss';
 @import '~@fortawesome/fontawesome-free/scss/solid.scss';
 @import '~@fortawesome/fontawesome-free/scss/regular.scss';
 @import '~@fortawesome/fontawesome-free/scss/brands.scss';
 
 @import '~mdb-angular-ui-kit/assets/scss/mdb.scss';
+html, body { height: 100%;
+  font-family: 'Tajawal', sans-serif !important;
+ }

@@ -1,1 +1,167 @@
-<p>manage-services works!</p>
+<div class="section-user-body  w-100 py-5 px-5 h-auto">
+  <h2 class="my-3">قائمة الخدمات المتاحة لدينا </h2>
+  <table class="table table-hover w-auto text-center uk-animation-fade table-center table-bordered table-dark"
+    [hidden]="">
+    <thead>
+      <tr class="fw-bolder text-info h6">
+        <th scope="col">#</th>
+        <th scope="col">اسم الخدمة </th>
+        <th scope="col" [width]="'25%'">وصف الخدمة </th>
+        <th scope="col " [width]="'15%'"> صورة الخدمة </th>
+
+        <th scope="col">عدد المشتركين بها </th>
+        <th scope="col"> تعديل </th>
+
+
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allServices ; index as i">
+      <tr class="center ">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.serviceName}}</td>
+        <td>{{item.serviceDescription}}</td>
+
+        <td class=" ">
+          <img *ngIf="item.serviceImage" src="http://localhost:3000/images/{{item.serviceImage}}" alt="service-image"
+            width="100%" height="100%">
+        </td>
+
+
+        <td>
+        </td>
+
+        <td class="">
+          <button type="button" class="btn btn-info btn-lg btn-block">تعديل الخدمة</button>
+          <button class="btn btn-danger btn-lg btn-block">حذف خدمة </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-info btn-lg" data-bs-target="#AddServiceModal" data-bs-toggle="modal"> أضافة خدمة
+          جديدة</button>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ! ====================  using pope for add service  ==========  -->
+  <div class="modal fade" id="AddServiceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <p class="modal-title lead fw-bold text-info center" id="exampleModalLabel">إضافة خدمة جديدة لقائمة مهامنا
+          </p>
+
+        </div>
+        <div class="modal-body">
+
+          <div class=" p-3 ">
+
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate
+              enctype="multipart/form-data">
+
+              <!-- * service name filed  -->
+              <div class="uk-inline uk-width-1-1">
+                <p class="uk-text-center   uk-text-lead  uk-text-secondary">اسم الخدمة</p>
+                <label class="uk-form-label " for="form-stacked-text">
+                  هذا الاسم هو الذي سيظهر للمستخدم من قائمة الخدمات المتاحة للعمل بها في منصتنا
+                </label>
+                <input type="text" class="uk-textarea  uk-padding-small" rows="5" name="serviceName"
+                  [(ngModel)]="form.serviceName" #serviceName="ngModel" required minlength="4"
+                  placeholder="اسم الخدمة ">
+                <div class="uk-alert-danger" uk-alert *ngIf="serviceName.errors && f.submitted">
+                  <p class="lead " *ngIf="serviceName.errors.required">
+                    اسم المهنة أجباري
+                  </p>
+                  <p class="lead " *ngIf="serviceName.errors. minlength">
+                    يجب أن تحقق عدد كلمات كافية
+                  </p>
+                </div>
+
+              </div>
+              <!-- service description filed  -->
+              <div class="my-2">
+                <div class="uk-inline uk-width-1-1">
+                  <p class="uk-text-center uk-margin-small  uk-text-lead  uk-text-secondary">وصف الخدمة</p>
+                  <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                    وصف توضيحي للمهنة وتشعباتها إن وجدت
+                  </label>
+                  <!-- input file username  -->
+                  <input class="uk-input uk-form-large uk-placeholder   " type="text" placeholder="وصف المهنة  "
+                    name="serviceDescription" [(ngModel)]="form.serviceDescription" required minlength="2"
+                    #serviceDescription="ngModel">
+                </div>
+                <!--* check required username  -->
+                <div class="uk-alert-danger" uk-alert *ngIf="serviceDescription.errors && f.submitted">
+                  <div class="" *ngIf="serviceDescription.errors.required">
+                    <p class="lead"> الوصف مطلوب </p>
+                  </div>
+                  <div class="" *ngIf="serviceDescription.errors.minlength">
+                    <p class="lead">يجب أن تحقق عدد كلمات كافية</p>
+                  </div>
+                </div>
+              </div>
+              <!-- image service  -->
+              <div class="uk-margin-small">
+
+                <div class="uk-margin-small">
+
+                  <div class="uk-inline uk-width-1-1">
+                    <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">رفع صورة الخدمة</p>
+                    <label class="uk-form-label uk-margin-small" for="form-stacked-text">
+                   تأكد من ان الملف المرفوع هو بصيغة من إحدى صيغ الصور
+                    </label>
+                    <div>
+                      <!--   style="display:none;"-->
+                      <label for="file-upload" class="custom-file-upload">
+                        Custom Upload
+                    </label>
+
+                      <input type="file"
+                      id="file-upload"
+                      #serviceImage="ngModel"
+                      #Clicked
+                      required
+                      name="serviceImage"
+                      
+                      [(ngModel)]="form.serviceImage"
+                      (change)="fileSelected($event)" >
+                      <button type="button"
+                      class="uk-button uk-button-default"
+                      (click)="Clicked.click()">اضغط لرفع الصورة </button>
+                    </div>
+
+
+                    <div class="uk-alert-danger" uk-alert
+                    *ngIf="serviceImage.errors && f.submitted">
+                      <p class="lead " *ngIf="serviceImage.errors.required">
+                    الصورة ألزامية
+                      </p>
+
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </form>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger text-center h4" data-bs-dismiss="modal">أغلاق النافذة</button>
+          <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
