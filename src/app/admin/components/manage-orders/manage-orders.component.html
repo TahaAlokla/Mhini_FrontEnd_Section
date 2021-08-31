@@ -1,1 +1,53 @@
-<p>manage-orders works!</p>
+<div class="section-user-body  w-100 py-5 px-5 h-auto">
+  <div class="container">
+    <div class="row">
+      <p class="lead">عرض طلبات المستخدمين </p>
+      <div class="alert alert-danger" role="alert" *ngIf="AllOrders.length===0">
+
+        <p class="lead">لا يوجد طلبات بعد </p>
+
+      </div>
+    </div>
+    <div class="row" *ngIf="AllOrders.length!==0">
+      <table class="table table-hover w-auto text-center uk-animation-fade table-center table-bordered table-dark"
+      [hidden]="">
+      <thead>
+        <tr class="fw-bolder text-info h6">
+          <th scope="col">#</th>
+          <th scope="col">اسم الزبون  </th>
+          <!--[width]="'25%'"  -->
+          <th scope="col" >اسم العامل المهني </th>
+          <th scope="col " >  حالة الطلب </th>
+
+          <th scope="col">تاريخ الطلب </th>
+          <th scope="col">الخدمة </th>
+          <th scope="col">رسالة الطلب </th>
+
+
+        </tr>
+      </thead>
+      <tbody *ngFor="let item of AllOrders ; index as i">
+        <tr class="center ">
+          <th scope="row">{{i+1}}</th>
+          <td>{{item.IdClient.username}}</td>
+          <td>{{item.IdWorker.username}}</td>
+          <td>
+            {{item.OrderStatus}}
+          </td>
+
+          <td class="">
+           {{item.timeOrder | date:'short'}}
+          </td>
+         <td>{{item.serviceName}}</td>
+           <!-- massageFromUser -->
+           <td class="">
+            {{item.massageFromUser}}
+           </td>
+        </tr>
+      </tbody>
+    </table>
+    </div>
+  </div>
+
+
+</div>

@@ -29,7 +29,7 @@ import { RegistrationWorkerTermsComponent } from './Shared/components/registrati
 import { WorkerProfileComponent } from './User/component/worker-profile/worker-profile.component';
 import { BrithdayToAgePipe } from './Pipes/brithday-to-age.pipe';
 import { SearchWorkerComponent } from './User/component/search-worker/search-worker.component';
-import { WorkercardComponent } from './User/components/workercard/workercard.component'
+
 
 
 
@@ -54,7 +54,7 @@ import { WorkercardComponent } from './User/components/workercard/workercard.com
     WorkerProfileComponent,
     BrithdayToAgePipe,
     SearchWorkerComponent,
-    WorkercardComponent
+
   ],
   imports: [
     BrowserModule,

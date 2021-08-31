@@ -22,9 +22,13 @@ export class AdminService {
    private addAdminUrl ="http://localhost:3000/api/admin/addAdmin"
    private deleteAdminUrl ="http://localhost:3000/api/admin/delete/"
 
+   private getAllOrdersUrl ="http://localhost:3000/api/admin/getAllOrders"
+    private addQuestionUrl ="http://localhost:3000/api/admin/addQ&A"
+
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }
 
+ 
 
   isLoggedIn(): boolean {
     return !!localStorage.getItem('token')
@@ -43,6 +47,9 @@ export class AdminService {
 
   getAllServices():Observable<any>{
     return this.http.get(this.getAllServicesUrl)
+  }
+  getAllOrders():Observable<any>{
+    return this.http.get(this.getAllOrdersUrl)
   }
 
   addService(formData:any):Observable<any>{
@@ -87,7 +94,7 @@ deleteAdmin(idAdmin:String): Observable<any>{
 
 
    return this.http.delete<any>(this.deleteAdminUrl+`${idAdmin}`)
-   
+
 
  }
 

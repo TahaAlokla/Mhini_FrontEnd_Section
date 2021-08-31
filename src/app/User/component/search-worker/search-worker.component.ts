@@ -26,6 +26,7 @@ export class SearchWorkerComponent implements OnInit {
   result:any
   IsLoginUser:Boolean=false
   massageFormUser = new FormControl('')
+  WorkersMassage:any=[]
   form: any = {
     city: null,
     JobWorker: null,
@@ -48,6 +49,13 @@ export class SearchWorkerComponent implements OnInit {
 
       this.workersId= result.IdWorkers.map((item :any) =>item.IdWorker )
       console.log("workersId :" ,this.workersId);
+      this.WorkersMassage = result.IdWorkers.map((item :any)=>{
+        item.IdWorker,
+        item.massageFromUser
+      })
+
+      console.log(this.WorkersMassage);
+
 
 
 
