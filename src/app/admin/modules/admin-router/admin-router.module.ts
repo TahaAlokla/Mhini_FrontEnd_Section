@@ -1,3 +1,5 @@
+import { ManageOrdersComponent } from './../../components/manage-orders/manage-orders.component';
+import { BoardAdminComponent } from './../../components/board-admin/board-admin.component';
 
 import { DashboardComponent } from './../../components/dashboard/dashboard.component';
 import { LoginAdminComponent } from './../../components/auth/login-admin/login-admin.component';
@@ -24,7 +26,15 @@ const routes: Routes = [
       { path: 'manage-user',
       canActivate: [AdminAuthGuard],
        component: ManageUsersComponent ,
-
+    },{
+      path:'sub-admin',
+      canActivate: [AdminAuthGuard],
+      component:BoardAdminComponent
+    },
+    {
+      path:"manage-orders",
+      canActivate: [AdminAuthGuard],
+      component:ManageOrdersComponent
 
     }
     ]

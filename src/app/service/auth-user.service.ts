@@ -108,11 +108,12 @@ export class AuthUserService {
 
    }
 
-   addOrderWorkerRequest(IdClient:any, IdWorker:any,serviceName:String):Observable<any>{
+   addOrderWorkerRequest(IdClient:any, IdWorker:any,serviceName:String ,massageFromUser:String):Observable<any>{
      return this.http.post<any>(this.addOrderWorkerUrl,{
       IdClient,
       IdWorker,
-      serviceName}
+      serviceName,
+      massageFromUser}
        , httpOptions
        )
    }

@@ -1,5 +1,17 @@
 <div class="section-user-body  w-100 py-5 px-5 h-auto">
   <h2 class="my-3">قائمة الخدمات المتاحة لدينا </h2>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <button class="btn btn-info btn-lg" data-bs-target="#AddServiceModal" data-bs-toggle="modal"> أضافة خدمة
+          جديدة</button>
+      </div>
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+  <hr>
   <table class="table table-hover w-auto text-center uk-animation-fade table-center table-bordered table-dark"
     [hidden]="">
     <thead>
@@ -39,17 +51,7 @@
   </table>
 
   <hr>
-  <div class="container">
-    <div class="row">
-      <div class="col">
-        <button class="btn btn-info btn-lg" data-bs-target="#AddServiceModal" data-bs-toggle="modal"> أضافة خدمة
-          جديدة</button>
-      </div>
-      <div class="col">
 
-      </div>
-    </div>
-  </div>
 
 
   <!-- ! ====================  using pope for add service  ==========  -->
@@ -66,7 +68,7 @@
           <div class=" p-3 ">
 
             <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate
-              enctype="multipart/form-data">
+              enctype="multipart/form-data" *ngIf="!IsSuccessAddService">
 
               <!-- * service name filed  -->
               <div class="uk-inline uk-width-1-1">
@@ -120,23 +122,24 @@
                    تأكد من ان الملف المرفوع هو بصيغة من إحدى صيغ الصور
                     </label>
                     <div>
-                      <!--   style="display:none;"-->
-                      <label for="file-upload" class="custom-file-upload">
-                        Custom Upload
-                    </label>
+
 
                       <input type="file"
                       id="file-upload"
+                      style="display:none;"
                       #serviceImage="ngModel"
                       #Clicked
                       required
                       name="serviceImage"
-                      
+
                       [(ngModel)]="form.serviceImage"
                       (change)="fileSelected($event)" >
                       <button type="button"
                       class="uk-button uk-button-default"
                       (click)="Clicked.click()">اضغط لرفع الصورة </button>
+
+                    <p *ngIf="FilenameImageSelected">
+                      {{FilenameImageSelected}} </p>
                     </div>
 
 
@@ -151,8 +154,16 @@
                   </div>
                 </div>
               </div>
+              <button class="btn-lg btn-success">ارسال</button>
 
             </form>
+            <!-- * massages  -->
+            <div class="">
+              <div class="alert alert-danger" *ngIf="massageAddService">
+                <p>{{massageAddService}}</p>
+              </div>
+
+            </div>
 
 
           </div>

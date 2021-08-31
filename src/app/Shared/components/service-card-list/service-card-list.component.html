@@ -6,8 +6,8 @@
 
     <div *ngFor="let item of serviceData.services">
       <div
-        class="uk-card uk-card-default uk-card-hover uk-card-body text-center uk-margin uk-box-shadow-large uk-card-small">
-        <img *ngIf="item.serviceImage" src="http://localhost:3000/images/{{item.serviceImage}}" width="" height="" alt="" uk-img>
+        class="uk-card uk-card-default uk-card-hover uk-card-body text-center uk-margin uk-box-shadow-large uk-card-small max-height">
+        <img *ngIf="item.serviceImage" src="http://localhost:3000/images/{{item.serviceImage}}" width="100%" height="100%" alt="image-service" uk-img>
         <h3 class=" font-Tajawal uk-margin">
           <p class=" uk-card-title">{{item.serviceName}}</p>
         </h3>

@@ -112,22 +112,29 @@
 
                 </div>
                 <div class="row mt-3">
-                  <div class="col-6 col-sm-12 col-md-12 col-lg-6">
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12">
                     <button class="btn  btn-lg w-100 my-2"
                     ngClass="{{getStatus(item._id)?'btn-danger':'btn-success'}}"
                     [disabled]="getStatus(item._id)"
 
-                      (click)="addWorkerServiceToOrder(item._id)">
+                      (click)="addWorkerServiceToOrder(item._id, MaassageFromUser.value)">
                       <span *ngIf="!getStatus(item._id)">طلب الخدمة</span>
                       <span *ngIf="getStatus(item._id)">الطلب معلق</span>
                     </button>
                   </div>
-                  <div class="col-6 col-sm-12 col-md-12 col-lg-6 my-2">
+                  <!-- <div class="col-6 col-sm-12 col-md-12 col-lg-6 my-2">
                     <button class="btn btn-info btn-lg w-100" (click)="Clicked.click()">
                       اتصال</button>
-                    <!-- {{item.phoneNumber}} -->
+
                     <a href="tel:{{item.phoneNumber}}" class="d-none" #Clicked>
                     </a>
+                  </div> -->
+                  <div class="col-12 col-sm-12 col-md-12 col-lg-12 my-2">
+                    <textarea class="form-control"
+                     [disabled] ="getStatus(item._id)"
+                   #MaassageFromUser
+
+                     name="massageFromUser"  id=""  rows="5"></textarea>
                   </div>
 
                 </div>

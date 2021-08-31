@@ -14,7 +14,7 @@ import { WhoUsComponent } from './Shared/components/who-us/who-us.component';
 import { ContactUsComponent } from './Shared/components/contact-us/contact-us.component';
 import { QuestionAnswerComponent } from './Shared/components/question-answer/question-answer.component';
 import {  HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AdminModule } from './admin/modules/admin/admin.module';
 import { LoginComponent } from './User/component/login/login.component';
 import { RegisterComponent } from './User/component/register/register.component';
@@ -28,7 +28,8 @@ import { RegisterWorkerComponent } from './User/component/register-worker/regist
 import { RegistrationWorkerTermsComponent } from './Shared/components/registration-worker-terms/registration-worker-terms.component';
 import { WorkerProfileComponent } from './User/component/worker-profile/worker-profile.component';
 import { BrithdayToAgePipe } from './Pipes/brithday-to-age.pipe';
-import { SearchWorkerComponent } from './User/component/search-worker/search-worker.component'
+import { SearchWorkerComponent } from './User/component/search-worker/search-worker.component';
+import { WorkercardComponent } from './User/components/workercard/workercard.component'
 
 
 
@@ -52,7 +53,8 @@ import { SearchWorkerComponent } from './User/component/search-worker/search-wor
     RegistrationWorkerTermsComponent,
     WorkerProfileComponent,
     BrithdayToAgePipe,
-    SearchWorkerComponent
+    SearchWorkerComponent,
+    WorkercardComponent
   ],
   imports: [
     BrowserModule,
@@ -64,6 +66,7 @@ import { SearchWorkerComponent } from './User/component/search-worker/search-wor
    FormsModule,
    AdminModule,
    CustomFormsModule,
+   ReactiveFormsModule
 
 
 

@@ -25,9 +25,11 @@ export class SearchWorkerComponent implements OnInit {
   servicesProviderWorker: any
   result:any
   IsLoginUser:Boolean=false
+  massageFormUser = new FormControl('')
   form: any = {
     city: null,
     JobWorker: null,
+
   };
 
   constructor(private AuthUserService: AuthUserService , private serviceUs: ServiceUsService , private TokenStorageService: TokenStorageService) { }
@@ -42,6 +44,8 @@ export class SearchWorkerComponent implements OnInit {
 
     // get workrsId for This Client Id For that Request order Status Pending
     this.AuthUserService.getOrderStatusPending(this.idClient).subscribe(result=>{
+      console.log("get order pending ",result);
+
       this.workersId= result.IdWorkers.map((item :any) =>item.IdWorker )
       console.log("workersId :" ,this.workersId);
 
@@ -86,6 +90,7 @@ export class SearchWorkerComponent implements OnInit {
     const {
       city,
       JobWorker,
+
     } = this.form;
     // Note : append work if using multer only
     // for that not working here
@@ -113,13 +118,12 @@ export class SearchWorkerComponent implements OnInit {
 
 
   }
+//  add request massage order
+ addWorkerServiceToOrder(idWorker:any , massageFromUser:any){
+ console.log(massageFromUser ,'massageFromUser');
 
-  addWorkerServiceToOrder(idWorker:any){
-    // id client
-    // this.idClient,
-    // console.log("idWorker ",idWorker ," id client :", this.idClient, " service name : ", this.ServiceName);
 
-    this.AuthUserService.addOrderWorkerRequest(this.idClient,idWorker,this.ServiceName).subscribe(result=>{
+    this.AuthUserService.addOrderWorkerRequest(this.idClient,idWorker,this.ServiceName ,massageFromUser).subscribe(result=>{
       this.addOrderRequestStatus=true
    this.OrderStatus= result.OrderData.OrderStatus
    this.workersId.push(idWorker)

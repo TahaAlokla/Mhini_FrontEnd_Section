@@ -1,1 +1,187 @@
-<p>board-admin works!</p>
+<div class="section-user-body  w-100 py-5 px-5 h-auto">
+  <p class="">ادارة مديري المنصة </p>
+  <button class="btn btn-lg btn-dark" (click)="logoutAdmin()">تسجيل خروج </button>
+  <hr>
+  <div class="row">
+    <div class="col">
+      <button class="btn-lg btn-success" data-bs-target="#AddServiceModal" data-bs-toggle="modal">اضافة أدمن جديد</button>
+    </div>
+  </div>
+  <div class="row my-3">
+    <p class="">الادمن الموجودين لدينا </p>
+    <div class="row">
+      <div class="row">
+        <!-- <div class="alert alert-success" role="alert" ng-show="" *ngIf="massageDeleteAdmin">
+          {{massageDeleteAdmin}}
+        </div> -->
+        <!-- <div class="alert alert-danger" role="alert" *ngIf="massageErrorDeleteAdmin">
+          {{massageErrorDeleteAdmin}}
+        </div> -->
+      </div>
+      <table class="table table-hover w-auto text-center uk-animation-fade table-center table-bordered table-dark"
+    [hidden]="">
+    <thead>
+      <tr class="fw-bolder text-info h6">
+        <th scope="col">#</th>
+        <th scope="col"> الاسم </th>
+        <th scope="col" [width]="'25%'"> رقم الهاتف </th>
+        <th scope="col " [width]="'15%'"> الصلاحية </th>
+        <th scope="col">تاريخ الانشاء</th>
+        <th scope="col">حذف الحساب </th>
+      </tr>
+    </thead>
+    <tbody *ngFor="let item of allAdmins ; index as i">
+      <tr class="center ">
+        <th scope="row">{{i+1}}</th>
+        <td>{{item.adminName}}</td>
+        <td>{{item.phoneNumber}}</td>
+        <!-- createdAt -->
+        <td>
+          {{item.adminPrivilege}}
+        </td>
+
+        <td class="">
+          {{item.createdAt | date:'short'}}
+        </td>
+        <td>
+          <button class="btn-lg btn-danger"
+          (click)="deleteAdmin(item._id)"
+         >Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="modal fade" id="AddServiceModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+          <div class="modal-header ">
+            <p class="modal-title lead fw-bold text-info center" id="exampleModalLabel">إضافة خدمة جديدة لقائمة مهامنا
+            </p>
+
+          </div>
+          <div class="modal-body">
+
+            <div class=" p-3 ">
+
+              <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate
+                enctype="multipart/form-data" *ngIf="!IsSuccessAddAdmin">
+
+                <!-- * service name filed  -->
+                <div class="uk-inline uk-width-1-1">
+                  <p class="   uk-text-lead  text-info">اسم الادمن</p>
+
+                  <input type="text" class="uk-textarea  uk-padding-small" rows="5" name="adminName"
+                    [(ngModel)]="form.adminName" #adminName="ngModel" required minlength="2"
+                    placeholder="اسم الادمن">
+                  <div class="uk-alert-danger" uk-alert *ngIf="adminName.errors && f.submitted">
+                    <p class="lead " *ngIf="adminName.errors.required">
+                    الاسم مطلوب
+                    </p>
+                    <p class="lead " *ngIf="adminName.errors. minlength">
+                      يجب أن تحقق عدد كلمات كافية
+                    </p>
+                  </div>
+
+                </div>
+                <!-- service description filed  -->
+                <div class="uk-margin-small-bottom">
+                  <div class="uk-inline uk-width-1-1">
+                    <p class=" text-info uk-margin-small  uk-text-lead  "> الصلاحية</p>
+                    <select name="adminPrivilege" [(ngModel)]="form.adminPrivilege" #adminPrivilege="ngModel" required
+                      class="uk-select text-info style-select">
+                      <option *ngFor="let adminPrivilege of  adminPrivileges"
+                      [value]="adminPrivilege">
+                        {{adminPrivilege}}
+                      </option>
+                    </select>
+                    <div class="uk-alert-danger" uk-alert *ngIf="adminPrivilege.errors && f.submitted">
+                      <p class="lead">أختيار الصلاحية مطلوب  </p>
+                    </div>
+
+                  </div>
+                </div>
+               <!-- * password -->
+               <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <p class=" text-info uk-margin-small  uk-text-lead  ">كلمة المرور</p>
+                  <a class="uk-form-icon uk-position-small uk-position-buttom-left">
+                    <mat-icon matSuffix (click)="hide1 = !hide1">{{hide1 ? 'visibility_off' : 'visibility'}}</mat-icon>
+                  </a>
+                  <!-- input password filed -->
+                  <input class="uk-input uk-form-large uk-placeholder "  [type]="hide1 ? 'password' : 'text'"
+                    placeholder="كلمة المرور " name="password" [(ngModel)]="form.password" required minlength="6"
+                    #password="ngModel">
+                </div>
+                 <!--*  check password required and minimum 6 char -->
+                <div class="uk-alert-danger" uk-alert *ngIf="password.errors && f.submitted">
+                  <div class="" *ngIf="password.errors.required">
+                    <p class="lead">
+                  كلمة المرور مطلوبة
+                    </p>
+                  </div>
+                  <div class="" *ngIf="password.errors.minlength">
+                    <p class="lead">
+                      اقل طول لكلمة المرور 6 حروف
+
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <!-- phone number input -->
+              <div class="">
+                <div class="uk-inline uk-width-1-1">
+                  <!--   رقم الهاتف  -->
+                  <p class=" text-info uk-margin-small  uk-text-lead  "> رقم الهاتف</p>
+                  <span class="uk-form-icon uk-position-small uk-position-buttom-left" uk-icon="icon: phone"></span>
+                  <!-- phone number file is required and minimum length 10 char  -->
+                  <input class="uk-input uk-form-large uk-placeholder " type="text"
+                    placeholder="رقم الهاتف" name="phoneNumber" [(ngModel)]="form.phoneNumber" required minlength="10"
+                    #phoneNumber="ngModel"
+                    >
+                </div>
+                 <!--* check phone number filed  -->
+                <div class="uk-alert-danger" uk-alert *ngIf="phoneNumber.errors && f.submitted">
+                  <div *ngIf="phoneNumber.errors.required">
+                    <p class="lead">
+                      رقم الهاتف مطلوب
+                    </p>
+                   </div>
+                  <div *ngIf="phoneNumber.errors.minlength">
+                    <p class="lead">
+                      رقم الهاتف 10 ارقام بدون رمز دولي
+                    </p>
+                    </div>
+                </div>
+              </div>
+
+                <button class="btn-lg btn-success">ارسال</button>
+
+              </form>
+              <!-- * massages  -->
+              <div class="">
+                <div class="alert alert-success" *ngIf="massageAddAdmin">
+                  <p>{{massageAddAdmin}}</p>
+                </div>
+                <div class="alert alert-danger" *ngIf="massageErrorAddAdmin">
+                  <p>{{massageErrorAddAdmin}}</p>
+                </div>
+
+              </div>
+
+
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger text-center h4" data-bs-dismiss="modal">أغلاق النافذة</button>
+            <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

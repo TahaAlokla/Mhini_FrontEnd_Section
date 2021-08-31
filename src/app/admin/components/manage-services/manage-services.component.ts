@@ -9,6 +9,9 @@ import { Component, OnInit } from '@angular/core';
 export class ManageServicesComponent implements OnInit {
   allServices:any=[]
   MassageAllServices:String=''
+  massageAddService :String=''
+  IsSuccessAddService:Boolean=false
+  FilenameImageSelected:String = ''
   form: any = {
     serviceName: null,
     serviceDescription: null,
@@ -25,12 +28,34 @@ export class ManageServicesComponent implements OnInit {
   }
 
   onSubmit(){
+    const formData = new FormData()
+    const {
+      serviceName,
+      serviceDescription,
+
+    } = this.form;
+
+    formData.append('serviceDescription', serviceDescription);
+    formData.append('serviceName', serviceName);
+    formData.append('serviceImage', this.serviceImage);
+
+    this.adminService.addService(formData).subscribe(result=>{
+
+      this.massageAddService = result.massage
+      this.IsSuccessAddService = true
+      this.ngOnInit()
+
+    },err=>{
+      this.massageAddService = err.massage
+    })
+
 
   }
   serviceImage:any
   fileSelected(event: any) {
     const selectedFile = <File>event.target.files[0]
     this.serviceImage = selectedFile
+    this.FilenameImageSelected = <string>selectedFile.name
 
     console.log(this.serviceImage);
 

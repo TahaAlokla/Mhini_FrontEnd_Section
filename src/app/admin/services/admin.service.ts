@@ -16,6 +16,12 @@ export class AdminService {
   private unBlockedUserUrl= "http://localhost:3000/api/admin/unBlockedUserActivate"
   private getAllServicesUrl = "http://localhost:3000/api/service/viewservices"
 
+  private serviceAddUrl = "http://localhost:3000/api/admin/service/addservice"
+   private getAllAdminsUrl ="http://localhost:3000/api/admin/getAllAdmins"
+
+   private addAdminUrl ="http://localhost:3000/api/admin/addAdmin"
+   private deleteAdminUrl ="http://localhost:3000/api/admin/delete/"
+
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }
 
@@ -37,6 +43,10 @@ export class AdminService {
 
   getAllServices():Observable<any>{
     return this.http.get(this.getAllServicesUrl)
+  }
+
+  addService(formData:any):Observable<any>{
+    return this.http.post<any>(this.serviceAddUrl,formData)
   }
 
 
@@ -63,6 +73,23 @@ export class AdminService {
 unBlockedUser(phoneNumber:any):Observable<any>{
   return this.http.post(this.unBlockedUserUrl ,{phoneNumber})
 }
+
+getAllAdmins():Observable<any>{
+  return this.http.get(this.getAllAdminsUrl)
+}
+
+addAdmin(adminName:any,phoneNumber:any ,adminPrivilege:any,password:any):Observable<any>{
+  return this.http.post(this.addAdminUrl ,{adminName , phoneNumber ,adminPrivilege, password })
+}
+
+deleteAdmin(idAdmin:String): Observable<any>{
+  console.log(' admin delete service :', idAdmin);
+
+
+   return this.http.delete<any>(this.deleteAdminUrl+`${idAdmin}`)
+   
+
+ }
 
 
 }
