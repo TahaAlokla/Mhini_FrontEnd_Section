@@ -2,7 +2,11 @@ import { NotfiactionService } from './service/notfiaction.service';
 import { TokenStorageService } from './service/token-storage.service';
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-
+import {
+  MatSnackBar,
+  MatSnackBarHorizontalPosition,
+  MatSnackBarVerticalPosition,
+} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -20,15 +24,14 @@ export class AppComponent implements OnInit {
   showModeratorBoard = false;
   username?: string;
 
-  constructor(private title: Title, private tokenStorageService: TokenStorageService , private notificationService: NotfiactionService) {
+  constructor(private title: Title, private tokenStorageService: TokenStorageService , private notificationService: NotfiactionService , private _snackBar: MatSnackBar) {
     this.title.setTitle('مهني')
   }
 
-  ngOnInit(): void {
-    this.notificationService.onNewNotification().subscribe(result=>{
-      console.log(result);
 
-    })
+  resultOrderNotfictionApp:any={}
+  ngOnInit(): void {
+
     this.isLoggedIn = !!(((this.tokenStorageService.getToken())&&(Object.keys(this.tokenStorageService.getUser()).length)));
     console.log(this.isLoggedIn, 'this.isLoggedIn');
     console.log(this.tokenStorageService.getUser());
@@ -45,6 +48,14 @@ export class AppComponent implements OnInit {
       // check type user if [ normal user or worker]
       this.roles = user.userData.typeUser;
       if(this.roles==="worker"){
+        this.notificationService.onNewNotification().subscribe(resultOrderNotfiction=>{
+
+          this.resultOrderNotfictionApp = resultOrderNotfiction
+          console.log (this.resultOrderNotfictionApp.objectOrder.IdClient.username);
+          // this.openSnackBar(` وصول إشعار طلب خدمة جديد من ${this.resultOrderNotfictionApp.IdClient.username}`)
+          this.openSnackBar("وصلك اشعار جديد من "+this.resultOrderNotfictionApp.objectOrder.IdClient.username)
+        })
+
         this.isWorkerLogin=true
       } else {
         this.isUserLogin=true
@@ -59,6 +70,14 @@ export class AppComponent implements OnInit {
       this.username = user.userData.username;
     }
   }
+  openSnackBar(massage: any,) {
+    this._snackBar.open(massage, 'اغلاق', {
+      horizontalPosition: 'center',
+      verticalPosition: 'bottom',
+      duration: 250000,
+    });
+  }
+
 
 
  public logout(): void {

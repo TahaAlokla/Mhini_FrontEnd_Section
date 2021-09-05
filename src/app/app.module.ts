@@ -29,6 +29,8 @@ import { RegistrationWorkerTermsComponent } from './Shared/components/registrati
 import { WorkerProfileComponent } from './User/component/worker-profile/worker-profile.component';
 import { BrithdayToAgePipe } from './Pipes/brithday-to-age.pipe';
 import { SearchWorkerComponent } from './User/component/search-worker/search-worker.component';
+import { PagenotfoundComponent } from './Shared/components/pagenotfound/pagenotfound.component';
+
 
 
 
@@ -54,6 +56,8 @@ import { SearchWorkerComponent } from './User/component/search-worker/search-wor
     WorkerProfileComponent,
     BrithdayToAgePipe,
     SearchWorkerComponent,
+    PagenotfoundComponent,
+
 
   ],
   imports: [

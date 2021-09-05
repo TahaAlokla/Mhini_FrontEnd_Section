@@ -71,25 +71,68 @@
       d="M4 4a4 4 0 1 1 4.5 3.969V13.5a.5.5 0 0 1-1 0V7.97A4 4 0 0 1 4 3.999zm2.493 8.574a.5.5 0 0 1-.411.575c-.712.118-1.28.295-1.655.493a1.319 1.319 0 0 0-.37.265.301.301 0 0 0-.057.09V14l.002.008a.147.147 0 0 0 .016.033.617.617 0 0 0 .145.15c.165.13.435.27.813.395.751.25 1.82.414 3.024.414s2.273-.163 3.024-.414c.378-.126.648-.265.813-.395a.619.619 0 0 0 .146-.15.148.148 0 0 0 .015-.033L12 14v-.004a.301.301 0 0 0-.057-.09 1.318 1.318 0 0 0-.37-.264c-.376-.198-.943-.375-1.655-.493a.5.5 0 1 1 .164-.986c.77.127 1.452.328 1.957.594C12.5 13 13 13.4 13 14c0 .426-.26.752-.544.977-.29.228-.68.413-1.116.558-.878.293-2.059.465-3.34.465-1.281 0-2.462-.172-3.34-.465-.436-.145-.826-.33-1.116-.558C3.26 14.752 3 14.426 3 14c0-.599.5-1 .961-1.243.505-.266 1.187-.467 1.957-.594a.5.5 0 0 1 .575.411z" />
   </symbol>
 </svg>
+<!-- <div class="dropdown">
+  <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
+    data-bs-toggle="dropdown" aria-expanded="false">
+    <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
+    <strong>mdo</strong>
+  </a>
+  <ul class="dropdown-menu dropdown-menu-dark text-small shadow position-sticky " aria-labelledby="dropdownUser1">
+    <li><a class="dropdown-item" href="#">New project...</a></li>
+    <li><a class="dropdown-item" href="#">Settings</a></li>
+    <li><a class="dropdown-item" href="#">Profile</a></li>
+    <li>
+      <hr class="dropdown-divider">
+    </li>
+    <li><a class="dropdown-item" href="#">Sign out</a></li>
+  </ul>
+</div> -->
 <main class="direction">
 
   <!-- flex-column -->
   <div class="d-flex  flex-column flex-shrink-0 p-3 text-dark bg-super-light hover-shadow" style="width: 280px;">
     <!-- d-flex align-items-center -->
-    <p class="h3     text-dark fw-bolder text-decoration-none text-center rounded-3 mt-5">لوحة التحكم </p>
+    <p class="h3     text-dark fw-bolder text-decoration-none text-center rounded-3 mt-5">
+     تسجيل الخروج </p>
+
 
     <hr>
     <ul class="nav nav-pills flex-column  mb-auto mx-2">
       <li class="nav-item justify-content-between rounded-3  w-100">
         <!-- dashboard -->
         <a
-       [routerLink]="['./']"
+
+       [routerLink]="['./dashboard-space']"
+        class="nav-link  text-dark fw-bolder  fs-6 py-4
+        text-decoration-none hover-shadow" aria-current="page">
+          <button class="btn btn-lg btn-dark" (click)="logoutAdmin()">تسجيل خروج </button>
+          <!-- <a class="d-inline-block px-2" (click)="logoutAdmin()"> تسجيل الخروج</a> -->
+        </a>
+      </li>
+      <li class="nav-item justify-content-between rounded-3  w-100">
+        <!-- dashboard -->
+        <a
+
+       [routerLink]="['./dashboard-space']"
         class="nav-link  text-dark fw-bolder  fs-6 py-4
         text-decoration-none hover-shadow" aria-current="page">
           <svg class="bi me-2" width="16" height="16">
             <use xlink:href="#home" />
           </svg>
           <span class="d-inline-block px-2"> بيانات عامة</span>
+        </a>
+      </li>
+      <li class="nav-item justify-content-between rounded-3  w-100">
+        <!-- dashboard -->
+        <a
+
+       [routerLink]="['./adminProfile']"
+        class="nav-link  text-dark fw-bolder  fs-6 py-4
+        text-decoration-none hover-shadow" aria-current="page">
+          <svg class="bi me-2" width="16" height="16">
+            <use xlink:href="#home" />
+          </svg>
+          <span class="d-inline-block px-2"> بروفايل </span>
         </a>
       </li>
       <li class="text-center rounded-3 ">
@@ -133,39 +176,12 @@
       </li>
     </ul>
     <hr>
-    <div class="dropdown">
-      <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1"
-        data-bs-toggle="dropdown" aria-expanded="false">
-        <img src="https://github.com/mdo.png" alt="" width="32" height="32" class="rounded-circle me-2">
-        <strong>mdo</strong>
-      </a>
-      <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
-        <li><a class="dropdown-item" href="#">New project...</a></li>
-        <li><a class="dropdown-item" href="#">Settings</a></li>
-        <li><a class="dropdown-item" href="#">Profile</a></li>
-        <li>
-          <hr class="dropdown-divider">
-        </li>
-        <li><a class="dropdown-item" href="#">Sign out</a></li>
-      </ul>
-    </div>
+
   </div>
 
   <div class="b-example-divider"></div>
 
-<div class="section-user-body  w-100 py-5 px-5 h-auto">
-  <div class="container">
-    <div class="row">
-      <p class="lead col">قسم الاسئلة الشائعة </p>
-      <div class="">
-        <button class="btn-lg btn-success">اضافة سؤال جديد </button>
-      </div>
 
-    </div>
-    <hr>
-  </div>
-
-</div>
 
 <!-- * outleat router  -->
   <div class="container-dashboard  ">

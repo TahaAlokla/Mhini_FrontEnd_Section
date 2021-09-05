@@ -22,7 +22,7 @@ export class ManageServicesComponent implements OnInit {
   ngOnInit(): void {
 
     this.adminService.getAllServices().subscribe(result=>{
-      this.allServices = result.services
+      this.allServices = result.data
       this.MassageAllServices = result.massage
     })
   }
@@ -58,6 +58,9 @@ export class ManageServicesComponent implements OnInit {
     this.FilenameImageSelected = <string>selectedFile.name
 
     console.log(this.serviceImage);
+  }
+
+  deleteService(IdService:any){
 
   }
 

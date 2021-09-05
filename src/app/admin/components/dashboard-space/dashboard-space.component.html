@@ -1,0 +1,165 @@
+<div class="section-user-body  w-100 py-5 px-5 h-auto">
+  <div class="container">
+    <div class="row">
+      <p class="lead col fw-bolder text-info ">
+        قسم الاسئلة الشائعة
+        <a class="text-info text-decoration-underline d-block my-3" (click)="showQuestionSection()">
+          <span *ngIf="ShowQuestionSection===false" class="uk-animation-fade"> عرض</span>
+          <span *ngIf="ShowQuestionSection===true" class="uk-animation-fade"> إخفاء القسم</span>
+        </a>
+
+
+      </p>
+      <div class="uk-animation-fade" *ngIf="ShowQuestionSection">
+        <!-- data-bs-target="#AddServiceModal" data-bs-toggle="modal" -->
+        <button class="btn-lg btn-success" data-bs-target="#AddQuestionModal" data-bs-toggle="modal">اضافة سؤال جديد
+        </button>
+      </div>
+
+    </div>
+    <div class="row uk-animation-fade" *ngIf="ShowQuestionSection">
+      <div class="">
+        <p class="lead my-3">الاسئلة الخاصة بالموقع </p>
+        <div class="alert alert-danger" role="alert" *ngIf="AllQuestion.length===0">
+          <p class="lead">لا توجد اسئلة , ربما هناك مشكلة ! </p>
+        </div>
+      </div>
+      <div class="row" *ngIf="AllQuestion.length!==0">
+        <table class="table table-hover w-auto text-center uk-animation-fade table-center table-bordered table-dark"
+          [hidden]="">
+          <thead>
+            <tr class="fw-bolder text-info h6">
+              <th scope="col">#</th>
+              <th scope="col">السؤال </th>
+              <!--[width]="'25%'"  -->
+              <th scope="col" [width]="'45%'">الجواب </th>
+              <th scope="col "> تعديل </th>
+            </tr>
+          </thead>
+          <!-- Question -->
+          <tbody *ngFor="let item of AllQuestion ; index as i">
+            <tr class="center ">
+              <th scope="row">{{i+1}}</th>
+              <td>{{item.Question}}</td>
+              <td>{{item.Answer}}</td>
+              <td>
+                <button class="btn-md btn-danger " (click)="deleteQuestion(item._id)">حذف السؤال </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <hr>
+      <p class="lead col fw-bolder text-info ">
+        قسم المدن المتاحة بها الخدمات
+        <a class="text-info text-decoration-underline d-block my-3" (click)="showCitesSection()">
+          <span *ngIf="showCites===false" class="uk-animation-fade"> عرض</span>
+          <span *ngIf="showCites===true" class="uk-animation-fade"> إخفاء القسم</span>
+        </a>
+
+
+      </p>
+      <div class="uk-animation-fade" *ngIf="showCites">
+        <!-- data-bs-target="#AddServiceModal" data-bs-toggle="modal" -->
+        <button class="btn-lg btn-success" data-bs-target="#AddCitesModal" data-bs-toggle="modal">اضاف مدينة جديدة
+        </button>
+      </div>
+
+    </div>
+    <div class="row uk-animation-fade" *ngIf="showCites">
+      <div class="">
+        <p class="lead my-3">المدن المتاحة  </p>
+        <div class="alert alert-danger" role="alert" *ngIf="AllCites.length===0">
+          <p class="lead"> لا توجد مدن ربما  هناك مشكلة  </p>
+        </div>
+      </div>
+      <div class="row" *ngIf="AllCites.length!==0">
+        <div class="col col-4 col-sm-12 col-md-4 col-lg-4">
+          <ul  class="list-group list-group-flush rounded-2 border-2 border-info"
+          *ngFor="let item of AllCites " >
+           <li class="list-group-item  border-bottom border-info">{{item.cityName}}</li>
+         </ul>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+  <!-- * pope model add question -->
+
+  <div class="modal fade" id="AddQuestionModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content">
+        <div class="modal-header ">
+          <p class="modal-title lead fw-bold text-info center" id="exampleModalLabel">إضافة سؤال جديد الى صفحة الاسئلة
+            والاجوبة
+          </p>
+
+        </div>
+        <div class="modal-body">
+
+          <div class=" p-3 ">
+
+            <form name="form" (ngSubmit)="f.form.valid && onSubmit()" #f="ngForm" novalidate
+              *ngIf="!IsSuccessAddQuestion">
+              <!-- * Question field  -->
+              <div class="uk-inline uk-width-1-1">
+                <p class="   uk-text-lead  text-info">السؤال </p>
+                <input type="text" class="uk-textarea  uk-padding-small" rows="5" name="Question"
+                  [(ngModel)]="form.Question" #Question="ngModel" required minlength="5" placeholder="السؤال">
+                <div class="uk-alert-danger" uk-alert *ngIf="Question.errors && f.submitted">
+                  <p class="lead " *ngIf="Question.errors.required">
+                    السؤال مطلوب
+                  </p>
+                  <p class="lead " *ngIf="Question.errors. minlength">
+                    يجب أن تحقق عدد كلمات كافية
+                  </p>
+                </div>
+
+              </div>
+              <!-- * answer filed  -->
+              <div class="uk-inline uk-width-1-1">
+                <p class="   uk-text-lead  text-info">الجواب </p>
+                <input type="text" class="uk-textarea  uk-padding-small" rows="5" name="Answer"
+                  [(ngModel)]="form.Answer" #Answer="ngModel" required minlength="5" placeholder="الجواب ">
+                <div class="uk-alert-danger" uk-alert *ngIf="Answer.errors && f.submitted">
+                  <p class="lead " *ngIf="Answer.errors.required">
+                    الجواب مطلوب
+                  </p>
+                  <p class="lead " *ngIf="Answer.errors. minlength">
+                    يجب أن تحقق عدد كلمات كافية
+                  </p>
+                </div>
+
+              </div>
+              <button class="btn-lg btn-info mt-3 px-5 px-lg-5">ارسال</button>
+
+            </form>
+            <!-- * massages  -->
+            <div class="">
+              <div class="alert alert-success" *ngIf="massageAddQuestion">
+                <p>{{massageAddQuestion}}</p>
+              </div>
+              <div class="alert alert-danger" *ngIf="massageErrorAddQuestion">
+                <p>{{massageErrorAddQuestion}}</p>
+              </div>
+
+            </div>
+
+
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger text-center h4" data-bs-dismiss="modal">أغلاق النافذة</button>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+</div>

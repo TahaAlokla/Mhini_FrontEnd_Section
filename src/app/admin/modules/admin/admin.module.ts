@@ -1,3 +1,5 @@
+import { AdminProfileComponent } from './../../components/admin-profile/admin-profile.component';
+import { DashboardSpaceComponent } from './../../components/dashboard-space/dashboard-space.component';
 import { AdminRouterModule } from './../admin-router/admin-router.module';
 import { RegisterSubAdminComponent } from './../../components/auth/register-sub-admin/register-sub-admin.component';
 import { LoginAdminComponent } from './../../components/auth/login-admin/login-admin.component';
@@ -19,7 +21,9 @@ import { MaterialModule } from 'src/app/Shared/module/material/material.module';
     ManageUsersComponent,
     ManageOrdersComponent,
     LoginAdminComponent,
-    RegisterSubAdminComponent
+    RegisterSubAdminComponent,
+    DashboardSpaceComponent,
+    AdminProfileComponent
 
   ],
   imports: [

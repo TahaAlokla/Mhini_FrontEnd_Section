@@ -1,3 +1,6 @@
+import { PagenotfoundComponent } from './../../../Shared/components/pagenotfound/pagenotfound.component';
+import { AdminProfileComponent } from './../../components/admin-profile/admin-profile.component';
+import { DashboardSpaceComponent } from './../../components/dashboard-space/dashboard-space.component';
 import { ManageOrdersComponent } from './../../components/manage-orders/manage-orders.component';
 import { BoardAdminComponent } from './../../components/board-admin/board-admin.component';
 
@@ -35,8 +38,24 @@ const routes: Routes = [
       path:"manage-orders",
       canActivate: [AdminAuthGuard],
       component:ManageOrdersComponent
+    },
+    {
+      path:"dashboard-space",
+      canActivate: [AdminAuthGuard],
+      component:DashboardSpaceComponent
+    },
+    {
+      path:"adminProfile",
+      canActivate: [AdminAuthGuard],
+      component:AdminProfileComponent
+    },
+    {
+      path:"**",
+      canActivate: [AdminAuthGuard],
+      component:PagenotfoundComponent
+    },
 
-    }
+
     ]
   },
 

@@ -1,3 +1,4 @@
+import { PagenotfoundComponent } from './Shared/components/pagenotfound/pagenotfound.component';
 import { SearchWorkerComponent } from './User/component/search-worker/search-worker.component';
 import { WorkerProfileComponent } from './User/component/worker-profile/worker-profile.component';
 import { WorkerAuthGuard } from './guards/worker-auth.guard';
@@ -20,7 +21,7 @@ import { AdminAuthGuard } from './guards/admin-auth.guard';
 const routes: Routes = [
   { path: 'home', component: HomePageComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'contactUs', component: ContactUsComponent },
+  { path: 'contact', component: ContactUsComponent },
   { path: 'service-us', component: ServiceCardListComponent },
   { path: 'Q&A', component: QuestionAnswerComponent },
 
@@ -53,7 +54,8 @@ const routes: Routes = [
 
     component: SearchWorkerComponent
   },
-  { path: 'registration-terms', component: RegistrationWorkerTermsComponent }
+  { path: 'registration-terms', component: RegistrationWorkerTermsComponent },
+  {path:'**' , component:PagenotfoundComponent}
 ];
 
 @NgModule({

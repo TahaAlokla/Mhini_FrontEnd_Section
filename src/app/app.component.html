@@ -1,59 +1,73 @@
-<nav class="uk-navbar-container uk-dark" uk-navbar data-uk-sticky uk-navbar="boundary-align: true; align: right;">
+<nav class="navbar navbar-expand-md  fixed-top navbar-light bg-light mb-5 mb-lg-5 py-4 fw-bolder text-dark">
 
-  <div class="uk-container uk-navbar-right">
-    <div class="uk-navbar-right">
+  <div class="container text-center">
+    <button class="navbar-toggler text-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <mat-icon aria-hidden="false" aria-label="Example home icon">menu</mat-icon>
+      <!-- <span class="navbar-toggler-icon"></span> -->
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <div class="">
 
-      <ul class="uk-navbar-nav uk-navbar-right">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
 
-        <li>
-          <!-- admin -->
-          <a routerLink='/admin/dashboard'>لوحة التحكم</a>
+          <li class="nav-item px-3">
+            <!-- admin -->
+            <a
+             class="nav-link"
+             routerLink='/admin/dashboard/dashboard-space'>لوحة التحكم</a>
 
-        </li>
-
-
-        <li><a routerLink='/home'>الصفحة الرئيسية </a></li>
-
-        <li><a routerLink='/service-us'>خدماتنا </a></li>
-
-        <li><a routerLink='/Q&A'>الأسئلة الشائعة</a></li>
-<!-- searchWorker -->
-        <li><a routerLink='/searchWorker'>البحث عن خدمة </a></li>
-
-          <li class="uk-navbar-right" *ngIf="!isLoggedIn&&!isAdminLogin">
-            <a  class="" routerLink="user/registerUser">أنشاء حساب </a>
-          </li>
-          <li class="uk-navbar-right" *ngIf="!isLoggedIn&&!isAdminLogin">
-            <a  class="" routerLink="user/registerWorker">أنشاء حساب مهني </a>
-          </li>
-          <li class="" *ngIf="!isLoggedIn&&!isAdminLogin">
-            <a class=""
-            routerLink="user/loginUser"
-            routerLinkActive
-            >تسجيل دخول</a>
           </li>
 
-            <li class=""
-            *ngIf="isLoggedIn&&isUserLogin">
-              <a  class=""
-              routerLink="user/profile"
+
+          <li class="nav-item px-3"><a
+            class="nav-link"
+             routerLink='/home'>الصفحة الرئيسية </a></li>
+
+          <li class="nav-item px-3"><a  class="nav-link"
+            routerLink='/service-us'>خدماتنا </a></li>
+
+          <li class="nav-item px-3"><a   class="nav-link"
+            routerLink='/Q&A'>الأسئلة الشائعة</a></li>
+  <!-- searchWorker -->
+          <li class="nav-item px-3"><a  class="nav-link"
+             routerLink='/searchWorker'>البحث عن خدمة </a></li>
+
+            <li class="nav-item px-3"*ngIf="!isLoggedIn&&!isAdminLogin">
+              <a   class="nav-link" routerLink="user/registerUser">أنشاء حساب </a>
+            </li>
+            <li class="nav-item px-3" *ngIf="!isLoggedIn&&!isAdminLogin">
+              <a  class="nav-link " routerLink="user/registerWorker">أنشاء حساب مهني </a>
+            </li>
+            <li class="nav-item px-3" *ngIf="!isLoggedIn&&!isAdminLogin">
+              <a  class="nav-link text-dark text-decoration-none"
+              routerLink="user/loginUser"
               routerLinkActive
-              >{{ username }}</a>
-            </li>
-            <li class="" *ngIf="isLoggedIn&&isWorkerLogin">
-              <a  class="" routerLink="user/profile-worker" routerLinkActive>{{ username }}</a>
-            </li>
-            <li class=""  *ngIf="isLoggedIn">
-              <a  class="" (click)="logout()">تسجيل الخروج</a>
-            </li>
-            <li class=""  *ngIf="isAdminLogin">
-              <a  class="" (click)="logout()">تسجيل الخروج</a>
+              >تسجيل دخول</a>
             </li>
 
+              <li class="nav-item px-3"
+              *ngIf="isLoggedIn&&isUserLogin">
+                <a   class="nav-link"
+                routerLink="user/profile"
+                routerLinkActive
+                >{{ username }}</a>
+              </li>
+              <li class="nav-item px-3" *ngIf="isLoggedIn&&isWorkerLogin">
+                <a   class="nav-link" routerLink="user/profile-worker" routerLinkActive>{{ username }}</a>
+              </li>
+              <li class="nav-item px-3"  *ngIf="isLoggedIn">
+                <a  class="text-decoration-none text-danger nav-link" (click)="logout()">تسجيل الخروج</a>
+              </li>
+              <li class="nav-item"  *ngIf="isAdminLogin">
+                <a   class="nav-link" (click)="logout()">تسجيل الخروج</a>
+              </li>
 
-      </ul>
 
+        </ul>
+
+      </div>
     </div>
+
   </div>
 </nav>
 

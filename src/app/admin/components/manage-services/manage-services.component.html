@@ -37,14 +37,10 @@
           <img *ngIf="item.serviceImage" src="http://localhost:3000/images/{{item.serviceImage}}" alt="service-image"
             width="100%" height="100%">
         </td>
-
-
-        <td>
-        </td>
-
+        <td> {{item.count}}</td>
         <td class="">
           <button type="button" class="btn btn-info btn-lg btn-block">تعديل الخدمة</button>
-          <button class="btn btn-danger btn-lg btn-block">حذف خدمة </button>
+          <button class="btn btn-danger btn-lg btn-block" (click)="deleteService(item._id)">حذف خدمة </button>
         </td>
       </tr>
     </tbody>
@@ -117,36 +113,27 @@
                 <div class="uk-margin-small">
 
                   <div class="uk-inline uk-width-1-1">
-                    <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">رفع صورة الخدمة</p>
+                    <p class="uk-text-center uk-margin-small-bottom  uk-text-lead  uk-text-secondary">رفع صورة الخدمة
+                    </p>
                     <label class="uk-form-label uk-margin-small" for="form-stacked-text">
-                   تأكد من ان الملف المرفوع هو بصيغة من إحدى صيغ الصور
+                      تأكد من ان الملف المرفوع هو بصيغة من إحدى صيغ الصور
                     </label>
                     <div>
 
 
-                      <input type="file"
-                      id="file-upload"
-                      style="display:none;"
-                      #serviceImage="ngModel"
-                      #Clicked
-                      required
-                      name="serviceImage"
+                      <input type="file" id="file-upload" style="display:none;" #serviceImage="ngModel" #Clicked
+                        required name="serviceImage" [(ngModel)]="form.serviceImage" (change)="fileSelected($event)">
+                      <button type="button" class="uk-button uk-button-default" (click)="Clicked.click()">اضغط لرفع
+                        الصورة </button>
 
-                      [(ngModel)]="form.serviceImage"
-                      (change)="fileSelected($event)" >
-                      <button type="button"
-                      class="uk-button uk-button-default"
-                      (click)="Clicked.click()">اضغط لرفع الصورة </button>
-
-                    <p *ngIf="FilenameImageSelected">
-                      {{FilenameImageSelected}} </p>
+                      <p *ngIf="FilenameImageSelected">
+                        {{FilenameImageSelected}} </p>
                     </div>
 
 
-                    <div class="uk-alert-danger" uk-alert
-                    *ngIf="serviceImage.errors && f.submitted">
+                    <div class="uk-alert-danger" uk-alert *ngIf="serviceImage.errors && f.submitted">
                       <p class="lead " *ngIf="serviceImage.errors.required">
-                    الصورة ألزامية
+                        الصورة ألزامية
                       </p>
 
                     </div>

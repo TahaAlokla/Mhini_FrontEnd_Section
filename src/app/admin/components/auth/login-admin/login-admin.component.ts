@@ -56,7 +56,7 @@ export class LoginAdminComponent implements OnInit {
         this.roles = data.typeUser
         this.redirectLoginDashboard();
 
-        this.reloadPage();
+        // this.reloadPage();
       },
       err => {
         console.log(err, 'err login user')

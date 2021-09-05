@@ -1,0 +1,20 @@
+<div class="section-user-body  w-100 py-5 px-5 h-auto">
+  <div class="container">
+    <div class="row">
+      <p class="lead">
+        اسم الادمن :{{currentAdmin.adminName}}
+      </p>
+      <p class="lead">
+       الصلاحية  :{{currentAdmin.adminPrivilege}}
+      </p>
+      <p class="lead">
+       رقم الهاتف   :{{currentAdmin.phoneNumber}}
+       </p>
+       <!-- createdAt -->
+       <p class="lead">
+      تاريخ الاضافة   :{{currentAdmin.createdAt | date:'short'}}
+       </p>
+    </div>
+  </div>
+
+</div>

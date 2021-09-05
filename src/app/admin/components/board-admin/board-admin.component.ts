@@ -77,11 +77,6 @@ this.AdminService.addAdmin(adminName, phoneNumber,adminPrivilege , password)
       this.massageDeleteAdmin = result.massage
        this.openSnackBar(this.massageDeleteAdmin)
 
-    //   setTimeout(() => {
-    //     this.massageDeleteAdmin = '';
-
-    // }, 3000);
-
       this.ngOnInit()
 
     },err=>{
@@ -97,10 +92,7 @@ this.AdminService.addAdmin(adminName, phoneNumber,adminPrivilege , password)
     });
   }
 
-  logoutAdmin(){
-      this.token.signOut();
-      window.location.reload();
-    }
+  
 
   }
 
