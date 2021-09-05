@@ -327,7 +327,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;http://localhost:3000/api/questions&quot;</code>
+                        <i>Default value : </i><code>&quot;https://mhini-app.herokuapp.com/api/questions&quot;</code>
                     </td>
                 </tr>
                     <tr>
@@ -355,7 +355,7 @@ import { catchError } from &#x27;rxjs/operators&#x27;;
   providedIn: &#x27;root&#x27;
 })
 export class QuestionAnswerServieService {
-  private getAllQuestionApi&#x3D;&quot;http://localhost:3000/api/questions&quot;
+  private getAllQuestionApi&#x3D;&quot;https://mhini-app.herokuapp.com/api/questions&quot;
   errorData!: {};
   constructor(private HttpClient: HttpClient) { }
   

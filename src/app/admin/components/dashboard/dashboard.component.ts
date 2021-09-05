@@ -10,6 +10,7 @@ export class DashboardComponent implements OnInit {
 
   constructor(private token : TokenStorageService) { }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
   }
 

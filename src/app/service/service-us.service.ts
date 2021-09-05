@@ -8,8 +8,8 @@ import { Observable } from 'rxjs';
 export class ServiceUsService {
 
   private ErrorHandler: ErrorHandler = new ErrorHandler()
-  private getAllServiceUsUrl = "http://localhost:3000/api/service/viewServices"
-  private deleteServiceUsUrl="http://localhost:3000/api/admin/deleteService/"
+  private getAllServiceUsUrl = "https://mhini-app.herokuapp.com/api/service/viewServices"
+  private deleteServiceUsUrl="https://mhini-app.herokuapp.com/api/admin/deleteService/"
   constructor(private http: HttpClient) { }
 
   getAllServicesUs(): Observable<any>  {

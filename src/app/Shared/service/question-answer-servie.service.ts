@@ -8,7 +8,7 @@ import { catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class QuestionAnswerServieService {
-  private getAllQuestionApi="http://localhost:3000/api/questions"
+  private getAllQuestionApi="https://mhini-app.herokuapp.com/api/questions"
   errorData!: {};
   constructor(private HttpClient: HttpClient) { }
   

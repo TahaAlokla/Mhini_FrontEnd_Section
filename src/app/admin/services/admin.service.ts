@@ -10,23 +10,22 @@ import { Observable } from 'rxjs';
   // providedIn: AdminModule
 })
 export class AdminService {
-  private loginAdminUrl = "http://localhost:3000/api/admin/login"
-  private getAllUserUrl = "http://localhost:3000/api/admin/getAllUser"
-  private blockedUserUrl = "http://localhost:3000/api/admin/blockedUserActivate"
-  private unBlockedUserUrl = "http://localhost:3000/api/admin/unBlockedUserActivate"
-  private getAllServicesUrl = "http://localhost:3000/api/admin/count"
+  private loginAdminUrl = "https://mhini-app.herokuapp.com/api/admin/login"
+  private getAllUserUrl = "https://mhini-app.herokuapp.com/api/admin/getAllUser"
+  private blockedUserUrl = "https://mhini-app.herokuapp.com/api/admin/blockedUserActivate"
+  private unBlockedUserUrl = "https://mhini-app.herokuapp.com/api/admin/unBlockedUserActivate"
+  private getAllServicesUrl = "https://mhini-app.herokuapp.com/api/admin/count"
 
-  private serviceAddUrl = "http://localhost:3000/api/admin/service/addservice"
-  private getAllAdminsUrl = "http://localhost:3000/api/admin/getAllAdmins"
+  private serviceAddUrl = "https://mhini-app.herokuapp.com/api/admin/service/addservice"
+  private getAllAdminsUrl = "https://mhini-app.herokuapp.com/api/admin/getAllAdmins"
 
-  private addAdminUrl = "http://localhost:3000/api/admin/addAdmin"
-  private deleteAdminUrl = "http://localhost:3000/api/admin/delete/"
-
-  private getAllOrdersUrl = "http://localhost:3000/api/admin/getAllOrders"
-  private addQuestionUrl = "http://localhost:3000/api/admin/addQ&A"
-  private getAllQuestionUrl = "http://localhost:3000/api/questions"
-  private deleteQuestionUrl = "http://localhost:3000/api/admin/deleteQ&A/"
-  private getAllCitesUrl ="http://localhost:3000/api/cites"
+  private addAdminUrl = "https://mhini-app.herokuapp.com/api/admin/addAdmin"
+  private deleteAdminUrl = "https://mhini-app.herokuapp.com/api/admin/delete/"
+  private getAllOrdersUrl = "https://mhini-app.herokuapp.com/api/admin/getAllOrders"
+  private addQuestionUrl = "https://mhini-app.herokuapp.com/api/admin/addQ&A"
+  private getAllQuestionUrl = "https://mhini-app.herokuapp.com/api/questions"
+  private deleteQuestionUrl = "https://mhini-app.herokuapp.com/api/admin/deleteQ&A/"
+  private getAllCitesUrl ="https://mhini-app.herokuapp.com/api/cites"
 
 
   constructor(private http: HttpClient, private tokenStorge: TokenStorageService) { }
@@ -67,7 +66,7 @@ export class AdminService {
     return this.http.post<any>(this.serviceAddUrl, formData)
   }
   // /deleteQ&A/:id
-  // http://localhost:3000/api/admin/deleteQ&A/:id
+  // https://mhini-app.herokuapp.com/api/admin/deleteQ&A/:id
 
   addQuestionAndAnswer(Question: any, Answer: any): Observable<any> {
     return this.http.post(this.addQuestionUrl, {

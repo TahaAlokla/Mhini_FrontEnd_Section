@@ -14,6 +14,7 @@ export class HomePageComponent implements OnInit {
     this.isLoggedIn= appComp.isLoggedIn
    }
 
+  // eslint-disable-next-line @angular-eslint/no-empty-lifecycle-method
   ngOnInit(): void {
 
   }

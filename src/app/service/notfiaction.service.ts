@@ -11,7 +11,7 @@ export class NotfiactionService {
   private socket: Socket;
 
   constructor( private tokenService: TokenStorageService) {
-    this.socket = io('http://localhost:3000');
+    this.socket = io('https://mhini-app.herokuapp.com');
   }
 
   onNewNotification() {

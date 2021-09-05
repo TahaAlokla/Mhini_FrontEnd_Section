@@ -359,7 +359,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&quot;http://localhost:3000/api/admin/login&quot;</code>
+                        <i>Default value : </i><code>&quot;https://mhini-app.herokuapp.com/api/admin/login&quot;</code>
                     </td>
                 </tr>
                     <tr>
@@ -389,7 +389,7 @@ import { Observable } from &#x27;rxjs&#x27;;
   // providedIn: AdminModule
 })
 export class AdminService {
-  private loginAdminUrl&#x3D;&quot;http://localhost:3000/api/admin/login&quot;
+  private loginAdminUrl&#x3D;&quot;https://mhini-app.herokuapp.com/api/admin/login&quot;
 
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }

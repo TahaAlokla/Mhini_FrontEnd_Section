@@ -11,18 +11,18 @@ const TOKEN_KEY = '';
 })
 export class AuthUserService {
 
-  private registerUserUrl = "http://localhost:3000/api/user/register"
-  private loginUserUrl = "http://localhost:3000/api/user/login"
-  private getUserUrl = "http://localhost:3000/api/user/getUser"
-  private getAllUserUrl = "http://localhost:3000/api/user/getAllUser"
-  private deleteUserUrl="http://localhost:3000/api/user/delete/"
-  private registerWorkerUrl="http://localhost:3000/api/worker/register"
-  private deleteWorkerUrl="http://localhost:3000/api/worker/delete/"
-  private citesAvailableUrl="http://localhost:3000/api/cites"
-  private searchWorkerUrl ="http://localhost:3000/api/user/searchWorker"
-  private addOrderWorkerUrl ="http://localhost:3000/api/user/addOrder"
-  private getOrderStatusPendingUrl= "http://localhost:3000/api/user/getOrderStatusPending"
-  private GetAllOrderStatusUrl= "http://localhost:3000/api/user/GetAllOrderStatus"
+  private registerUserUrl = "https://mhini-app.herokuapp.com/api/user/register"
+  private loginUserUrl = "https://mhini-app.herokuapp.com/api/user/login"
+  private getUserUrl = "https://mhini-app.herokuapp.com/api/user/getUser"
+  private getAllUserUrl = "https://mhini-app.herokuapp.com/api/user/getAllUser"
+  private deleteUserUrl="https://mhini-app.herokuapp.com/api/user/delete/"
+  private registerWorkerUrl="https://mhini-app.herokuapp.com/api/worker/register"
+  private deleteWorkerUrl="https://mhini-app.herokuapp.com/api/worker/delete/"
+  private citesAvailableUrl="https://mhini-app.herokuapp.com/api/cites"
+  private searchWorkerUrl ="https://mhini-app.herokuapp.com/api/user/searchWorker"
+  private addOrderWorkerUrl ="https://mhini-app.herokuapp.com/api/user/addOrder"
+  private getOrderStatusPendingUrl= "https://mhini-app.herokuapp.com/api/user/getOrderStatusPending"
+  private GetAllOrderStatusUrl= "https://mhini-app.herokuapp.com/api/user/GetAllOrderStatus"
 
 
   constructor(private http: HttpClient , private tokenStorge:TokenStorageService) { }
