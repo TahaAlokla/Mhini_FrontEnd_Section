@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "combodoc": "npx @compodoc/compodoc -p tsconfig.json -s",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "postinstall": "ng build --prod"
   },
   "private": true,
   "dependencies": {
@@ -38,7 +40,10 @@
     "socket.io-client": "^4.1.3",
     "tslib": "^2.2.0",
     "uikit": "^3.7.1",
-    "zone.js": "~0.11.4"
+    "zone.js": "~0.11.4",
+    "typescript": "~4.3.2",
+    "@angular/cli": "~12.1.2",
+    "@angular/compiler-cli": "~12.1.2"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.1.2",
@@ -63,5 +68,6 @@
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
     "typescript": "~4.3.2"
+
   }
 }
