@@ -19,7 +19,7 @@ export class AdminService {
   private serviceAddUrl = "https://mhini-app.herokuapp.com/api/admin/service/addservice"
   private getAllAdminsUrl = "https://mhini-app.herokuapp.com/api/admin/getAllAdmins"
 
-  private addAdminUrl = "ggit/api/admin/addAdmin"
+  private addAdminUrl = "https://mhini-app.herokuapp.com/api/admin/addAdmin"
   private deleteAdminUrl = "https://mhini-app.herokuapp.com/api/admin/delete/"
   private getAllOrdersUrl = "https://mhini-app.herokuapp.com/api/admin/getAllOrders"
   private addQuestionUrl = "https://mhini-app.herokuapp.com/api/admin/addQ&A"
